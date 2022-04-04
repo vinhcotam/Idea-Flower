@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IdeaFlower">
         <activity
+            android:name=".cartFlower"
+            android:exported="false" />
+        <activity
             android:name=".FlowerDetail"
             android:exported="false" />
         <activity
