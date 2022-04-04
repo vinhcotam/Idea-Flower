@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Flower Store</string>
+    <string name="login">Đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="forgetpass">Quên mật khẩu</string>
+    <string name="title">IDEA Flower Store</string>
+    <string name="email">Email</string>
+    <string name="signup">Đăng ký</string>
+    <string name="name">Tên bạn</string>
+    <string name="sendcode">Lấy mã xác nhận</string>
+    <string name="code">Mã xác nhận</string>
+    <string name="scrollview">Srcoll View</string>
+    <string name="menu">Menu</string>
+    <string name="home">Trang chủ</string>
+    <string name="cart">Giỏ hàng</string>
+    <string name="order">Đơn hàng của bạn</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="navigation">Mở menu</string>
+    <string name="close">Đsong</string>
+</resources>

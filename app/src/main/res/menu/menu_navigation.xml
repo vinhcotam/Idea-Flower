@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/home"
+            android:title="@string/home"
+            android:icon="@drawable/ic_home">
+        </item>
+        <item android:id="@+id/cart"
+            android:title="@string/cart"
+            android:icon="@drawable/ic_cart">
+        </item>
+        <item android:id="@+id/order"
+            android:title="@string/order"
+            android:icon="@drawable/ic_order">
+        </item>
+    </group>
+    <item android:title="Danh mục hoa">
+        <menu >
+            <item android:id="@+id/caycanh"
+                android:title="Cây cảnh"
+                android:icon="@drawable/ic_flower">
+
+            </item>
+            <item android:id="@+id/chucmung"
+                android:title="Hoa chúc mừng"
+                android:icon="@drawable/ic_flower">
+
+            </item>
+            <item android:id="@+id/tinhyeu"
+                android:title="Hoa tình yêu"
+                android:icon="@drawable/ic_flower">
+
+            </item>
+            <item android:id="@+id/tangle"
+                android:title="Hoa tang lễ"
+                android:icon="@drawable/ic_flower">
+
+            </item>
+
+        </menu>
+    </item>
+    <item android:title="Tài khoản">
+        <menu >
+            <item android:id="@+id/acc"
+                android:title="Quản lý tài khoản"
+                android:icon="@drawable/ic_acc">
+            </item>
+            <item android:id="@+id/logout"
+                android:title="@string/logout"
+                android:icon="@drawable/ic_logout">
+            </item>
+
+        </menu>
+    </item>
+</menu>
