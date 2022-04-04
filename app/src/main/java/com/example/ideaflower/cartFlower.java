@@ -1,7 +1,6 @@
 package com.example.ideaflower;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class cartFlower extends AppCompatActivity {

@@ -18,12 +18,19 @@ import android.widget.Button;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity  {
-
+    Button test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        test=findViewById(R.id.bt_test);
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,FlowerDetail.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
