@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="40dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textSize="32sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="20sp"/>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        >
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="15dp"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email_24"
+                android:drawablePadding="10dp"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:id="@+id/ET_email"
+                android:layout_span="2"
+                android:textSize="18sp"/>
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="15dp"
+            >
+
+            <EditText
+                android:id="@+id/ET_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_lock_24"
+                android:drawablePadding="10dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:layout_span="2"
+                android:textSize="18sp"/>
+        </TableRow>
+
+    </TableLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/BT_login"
+            android:textSize="16sp"
+            android:text="@string/login">
+        </Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:text="@string/signup"
+            android:layout_marginStart="5dp"
+            android:textSize="16sp"
+            android:id="@+id/BT_signup"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/testtinhnang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test tính năng" />
+
+</LinearLayout>

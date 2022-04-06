@@ -16,5 +16,21 @@
     <string name="order">Đơn hàng của bạn</string>
     <string name="logout">Đăng xuất</string>
     <string name="navigation">Mở menu</string>
-    <string name="close">Đsong</string>
+    <string name="close">Đóng</string>
+
+
+    <string name="getpass">Lấy lại mật khẩu</string>
+    <string name="find">Tìm gì nào</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="danhmuc">Danh mục</string>
+    <string name="caycanh">Cây cảnh</string>
+    <string name="hoachucmung">Hoa chúc mừng</string>
+    <string name="hoacuoi">Hoa tình yêu</string>
+    <string name="hoatangle">Hoa tang lễ</string>
+    <string name="flower">Hoa</string>
+    <string name="noitem">No item</string>
+    <string name="noprice">Hết hàng</string>
+    <string name="addtocart">Thêm vào giỏ</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>
