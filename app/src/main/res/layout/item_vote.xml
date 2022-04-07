@@ -1,27 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:text="Tên khách hàng:"
             android:id="@+id/tv_username"
-            android:textColor="#000000">
-        </TextView>
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:text="Nội dụng: "
-            android:layout_below="@+id/tv_username"
+            android:text="Tên khách hàng:"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#000000"
+            android:textSize="30dp"></TextView>
+
+        <TextView
             android:id="@+id/tv_content"
-            android:textColor="#000000">
-        </TextView>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_username"
+            android:layout_marginLeft="20dp"
+            android:text="Nội dụng: "
+            android:textColor="#000000"
+            android:textSize="20dp"></TextView>
+
+        <RatingBar
+            android:id="@+id/rating1"
+            style="@android:style/Widget.Holo.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_content"
+            android:layout_marginStart="15dp"
+            android:background="#ACA7A7"
+            android:foregroundTint="#3C3838"
+            android:indeterminate="false"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="#FDD835"
+            android:rating="0"
+            android:stepSize="0.1" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

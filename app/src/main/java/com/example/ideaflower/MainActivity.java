@@ -26,14 +26,7 @@ public class MainActivity extends AppCompatActivity  {
         Intent intent = new Intent(MainActivity.this, Login.class);
         startActivity(intent);
 
-//        test=findViewById(R.id.bt_test);
-//        test.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent=new Intent(MainActivity.this,FlowerDetail.class);
-//                startActivity(intent);
-//            }
-//        });
+
     }
 
 

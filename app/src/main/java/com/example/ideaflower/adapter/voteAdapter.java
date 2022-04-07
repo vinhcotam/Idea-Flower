@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,8 +36,10 @@ public class voteAdapter extends RecyclerView.Adapter<voteAdapter.ViewHolder>{
         vote vote=mListVote.get(position);
         String name=mListVote.get(position).getEmail();
         String content=mListVote.get(position).getContent();
-        holder.tv_name.setText(name);
+        float rating1=mListVote.get(position).getNumStar();
+        holder.tv_username.setText(name);
         holder.tv_content.setText(content);
+        holder.rating1.setRating(rating1);
     }
 
     @Override
@@ -44,13 +47,14 @@ public class voteAdapter extends RecyclerView.Adapter<voteAdapter.ViewHolder>{
         return mListVote.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView tv_name,tv_content;
+        private TextView tv_username,tv_content;
+        private RatingBar rating1;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_name=itemView.findViewById(R.id.tv_name);
+            tv_username=itemView.findViewById(R.id.tv_username);
             tv_content=itemView.findViewById(R.id.tv_content);
+            rating1=itemView.findViewById(R.id.rating1);
 
         }
     }
 }
-

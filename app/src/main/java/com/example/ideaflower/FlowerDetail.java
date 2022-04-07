@@ -18,10 +18,18 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.ideaflower.adapter.OrderAdapter;
+import com.example.ideaflower.adapter.flowerAdapter;
 import com.example.ideaflower.adapter.voteAdapter;
+import com.example.ideaflower.classs.Flower;
+import com.example.ideaflower.classs.Order;
 import com.example.ideaflower.classs.vote;
 import com.google.android.material.navigation.NavigationView;
 
@@ -29,15 +37,26 @@ import java.util.ArrayList;
 
 public class FlowerDetail extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ArrayList<vote> mListVote;
-    TextView tv_name,tv_price,tv_motasp,tv_quantity;
-    Button bt_addtocart;
-    ImageView img_chitiet;
+    private  static final int Fragment_home=0;
+    private  static final int Fragment_cart=1;
+    private  static final int Fragment_order=2;
+    private int mCurrentFragment=Fragment_home;
+    private  ArrayList<vote> mListVote;
+    Spinner spinner;
+    private ArrayList<Flower> mListFlower;
+    TextView tv_name,tv_price,tv_motasp,tv_quantity,tv_namesptt,tv_pricesptt,tv_thongbao,tv_total;
+    Button bt_addtocart,bt_vote,bt_thanhtoan,bt_tieptuc;
+    ImageView img_chitiet,img_sptt;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
-    Toolbar toolbar;
-    RecyclerView rcv_vote;
-    voteAdapter test;
+    Toolbar toolbar,tb_cart;
+    RecyclerView rcv_vote,rcv_flower,rcv_order;
+    voteAdapter voteAdapter;
+    com.example.ideaflower.adapter.flowerAdapter flowerAdapter;
+    RatingBar rating1,rating;
+    EditText et_namevote,et_contentvote;
+    OrderAdapter orderAdapter;
+    public static ArrayList<Order> mListOrder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,16 +64,117 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         anhXa();
         ConnectDB();
         mListVote=new ArrayList<>();
-        mListVote=displayData();
-        insertData();
+        mListVote=displayDataVote();
+        mListFlower=new ArrayList<>();
+        mListFlower=displayDataFlower();
+
+        //        replacFragment(new home());
+//        navigationView.getMenu().findItem(R.id.home).setCheckable(true);
+//        insertData();
         loadDataChitietSP();
-        displayData();
-        setData();
+        displayDataVote();
+        setDataVote();
+        setClickVote();
+        displayDataFlower();
+        setDataFlower();
+//        setClickAddtoCart();
+
     }
-    SQLiteDatabase db = null;
-    String idflower,nameflower,catagory,color,idvote,email,content;
-    int price,quantity,imgflower;
-    private void anhXa() {
+
+    private void setClickAddtoCart() {
+
+        bt_addtocart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //lay so luong
+
+            }
+        });
+    }
+
+    private void setDataFlower() {
+        flowerAdapter =new flowerAdapter(FlowerDetail.this,mListFlower);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(FlowerDetail.this,RecyclerView.HORIZONTAL,false);
+        rcv_flower.setLayoutManager(linearLayoutManager);
+        rcv_flower.setAdapter(flowerAdapter);
+    }
+
+    private ArrayList<Flower> displayDataFlower() {
+        String sql="Select * from Flower where category='Date'";
+        Cursor cursor = db.rawQuery(sql, null);
+        ArrayList<Flower>mListFlower=new ArrayList<>();
+        if(cursor.moveToFirst()){
+            do{
+                Flower flower=new Flower();
+                idflower=cursor.getString(0);
+                nameflower=cursor.getString(1);
+                price=cursor.getInt(3);
+                imgflower=cursor.getInt(5);
+                flower.setFlowername(nameflower);
+                flower.setFlowerid(idflower);
+                flower.setPrice(price);
+                flower.setImgid(imgflower);
+                mListFlower.add(flower);
+
+            }while(cursor.moveToNext());
+
+        }
+        cursor.close();
+        return mListFlower;
+    }
+
+    private void setClickVote() {
+        bt_vote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name=et_namevote.getText().toString().trim();
+                String content=et_contentvote.getText().toString().trim();
+                float ratingvote=rating.getRating();
+                if(name==null||content==null||ratingvote==0){
+                    Toast.makeText(FlowerDetail.this,"Vui lòng nhập đầy đủ thông tin",Toast.LENGTH_LONG).show();
+                }else{
+                    String sql="Insert into Vote(email,content,numstar,idflower) values ('"+name+"','"+content+"',"+ratingvote+",'flower2_date')";
+                    db.execSQL(sql);
+                    displayDataVote();
+                    setDataVote();
+//                    String sql1="Select * from Vote where idflower='flower2_date'";
+//                    db.execSQL(sql1);
+                    Toast.makeText(FlowerDetail.this,"Đánh giá thành công",Toast.LENGTH_LONG).show();
+                    et_namevote.setText("");
+                    et_contentvote.setText("");
+                }
+            }
+        });
+    }
+
+    private ArrayList<vote> displayDataVote() {
+        String sql="Select * from Vote where idflower='flower2_date'  limit 3";
+        Cursor cursor = db.rawQuery(sql, null);
+        ArrayList<vote>mListVote=new ArrayList<>();
+        if(cursor.moveToFirst()){
+            do{
+                vote vote=new vote();
+                email=cursor.getString(0);
+                content=cursor.getString(1);
+                ratingvote=cursor.getFloat(2);
+                vote.setEmail(email);
+                vote.setContent(content);
+                vote.setNumStar(ratingvote);
+                mListVote.add(vote);
+            }while(cursor.moveToNext());
+
+        }
+        cursor.close();
+        return mListVote;
+
+    }
+    private void setDataVote(){
+        voteAdapter=new voteAdapter(mListVote,FlowerDetail.this);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(FlowerDetail.this,RecyclerView.HORIZONTAL,false);
+        rcv_vote.setLayoutManager(linearLayoutManager);
+        rcv_vote.setAdapter(voteAdapter);
+    }
+    private void anhXa(){
         img_chitiet=findViewById(R.id.img_chitiet);
         tv_name=findViewById(R.id.tv_name);
         tv_price=findViewById(R.id.tv_price);
@@ -69,41 +189,52 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
                 R.string.navigation,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-//        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
         rcv_vote=findViewById(R.id.rcv_vote);
-        bt_addtocart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(FlowerDetail.this,cartFlower.class);
-                startActivity(intent);
-            }
-        });
+        rating1=findViewById(R.id.rating1);
+        rating=findViewById(R.id.rating);
+        et_namevote=findViewById(R.id.et_namevote);
+        et_contentvote=findViewById(R.id.et_contentvote);
+        bt_vote=findViewById(R.id.bt_vote);
+        tv_namesptt=findViewById(R.id.tv_namesptt);
+        tv_pricesptt=findViewById(R.id.tv_namesptt);
+        img_sptt=findViewById(R.id.img_sptt);
+        rcv_flower=findViewById(R.id.rcv_flower);
+        if(mListOrder!=null){
+
+        }else{
+            mListOrder=new ArrayList<>();
+        }
+
     }
+    SQLiteDatabase db = null;
     void ConnectDB(){
         db=openOrCreateDatabase("FlowerStore.db", MODE_PRIVATE, null);
         //tạo table nếu chưa có
-        String sql = "create table if not exists Flower(idflower char(50) primary key, nameflower char(50), category char(50),price int,color char(50),imgflower int,quantity int)";
-        String sql1="create table if not exists Vote(email char(50),content char(100),idflower char(50),foreign key (idflower)references Flower(idflower))";
-
-        db.execSQL(sql);
+//        String sql = "create table if not exists Flower(idflower char(50) primary key, nameflower char(50), category char(50),price int,color char(50),imgflower int,quantity int)";
+        String sql1="create table if not exists Vote(email char(50),content char(100),numstar float,idflower char(50),foreign key (idflower)references Flower(idflower))";
+//        db.execSQL(sql);
         db.execSQL(sql1);
 //        String sql = "DROP table Flower ";
 //        db.execSQL(sql);
-//                String sql1 = "DROP table Vote ";
-//        db.execSQL(sql1);
+//                String sql2 = "DROP table Vote ";
+//        db.execSQL(sql2);
     }
     void insertData(){
-        String sql="Insert into Flower values('flower1_date','First Date','Date',300000,'yellow and white',"+R.drawable.hoa2_date+",100)"
+        String sql="Insert into Flower values('flower1_date','First Date','Date',300000,'yellow and white',"+R.drawable.hoa1_date+",100)"
                 + ",('flower2_date','Carla','Date',550000,'pink',"+R.drawable.hoa2_date+",100)"
                 +",('flower3_date','La Vie En Rose','Date',500000,'pink and violet',"+R.drawable.hoa3_date+",100)"
                 +",('flower4_date','Violet Lover','Date',700000,'pink and violet',"+R.drawable.hoa4_date+",100)";
 //        String sql="Insert into Flower values('flower5_date','Firt Date','Date',300000,'yellow and white','hoa4_date')";
-        String sql1="Insert into Vote values('test','test','flower2_date')"
-                +",('test1','test1','flower2_date')"
-                +",('test2','test2','flower2_date')";
+        String sql1="Insert into Vote values('test','test',1,'flower2_date')"
+                +",('test1','test1',2,'flower2_date')"
+                +",('test2','test2',3,'flower2_date')";
 //        db.execSQL(sql);
         db.execSQL(sql1);
     }
+    String idflower,nameflower,catagory,color,idvote,email,content;
+    int price,quantity,imgflower;
+    float ratingvote;
     void loadDataChitietSP() {
         String sql = "Select * from Flower where idflower='flower2_date'";
         Cursor cursor = db.rawQuery(sql, null);
@@ -119,38 +250,13 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
             tv_price.append(" " + price + " vnđ");
             tv_name.append(nameflower);
             tv_quantity.append(" "+quantity);
+
             tv_motasp.setText("Phân loại hoa: " + catagory + " " + " màu sắc: " + color);
             //lấy ảnh từ db, chuyển về dạng int
             img_chitiet.setImageResource(imgflower);
             cursor.moveToNext();
         }
-    }
-    private ArrayList<vote> displayData() {
-        String sql="Select * from Vote where idflower='flower2_date'";
-        Cursor cursor = db.rawQuery(sql, null);
-        ArrayList<vote>mListVote=new ArrayList<>();
-        if(cursor.moveToFirst()){
-            do{
-                vote vote=new vote();
-                email=cursor.getString(0);
-                content=cursor.getString(1);
-                vote.setEmail(email);
-                vote.setContent(content);
-                mListVote.add(vote);
-            }while(cursor.moveToNext());
-
-        }
         cursor.close();
-
-        return mListVote;
-    }
-    private void setData(){
-        mListVote.add(new vote("test","test"));
-        mListVote.add(new vote("test1","test1"));
-        test=new voteAdapter(mListVote,FlowerDetail.this);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(FlowerDetail.this,RecyclerView.VERTICAL,false);
-        rcv_vote.setLayoutManager(linearLayoutManager);
-        rcv_vote.setAdapter(test);
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
