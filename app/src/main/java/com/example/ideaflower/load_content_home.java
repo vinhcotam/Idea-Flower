@@ -77,7 +77,12 @@ public class load_content_home extends Fragment {
         tvname = view.findViewById(R.id.TV_name2);
         tvprice = view.findViewById(R.id.TV_pricef2);
         ratingb = view.findViewById(R.id.rating2);
-        imv.setImageResource(imgid);
+        try{
+            imv.setImageResource(imgid);
+        }
+        catch(Exception e){
+            imv.setImageResource(R.drawable.noimg);
+        }
         tvname.setText(flowername);
         tvprice.setText(Price);
         ratingb.setRating(Rating);

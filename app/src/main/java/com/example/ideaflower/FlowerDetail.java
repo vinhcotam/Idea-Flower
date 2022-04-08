@@ -63,6 +63,9 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_flower_detail);
         anhXa();
         ConnectDB();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        Toast.makeText(this, bundle.getString("flowerid"), Toast.LENGTH_LONG).show();
         mListVote=new ArrayList<>();
         mListVote=displayDataVote();
         mListFlower=new ArrayList<>();
@@ -70,7 +73,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
 
         //        replacFragment(new home());
 //        navigationView.getMenu().findItem(R.id.home).setCheckable(true);
-//        insertData();
+        //insertData();
         loadDataChitietSP();
         displayDataVote();
         setDataVote();

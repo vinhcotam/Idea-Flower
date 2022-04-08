@@ -17,6 +17,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -45,45 +48,92 @@ public class Homepage extends AppCompatActivity {
         //setContentView(R.layout.activity_homepage);
         db = openOrCreateDatabase("FlowerShop.db", MODE_PRIVATE, null);
         addFlower();
+        setEvent();
         LoadContent();
     }
+
     ArrayList<Flower> flowers = new ArrayList<Flower>();
-    String email="";
+    String email = "";
     SQLiteDatabase db = null;
+
     void LoadContent() {
         RecyclerView recyclerView = findViewById(R.id.ViewContent);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        ContentAdapter contentAdapter = new ContentAdapter(flowers, getApplicationContext());
+        ContentAdapter contentAdapter = new ContentAdapter(flowers, email, getApplicationContext());
         recyclerView.setAdapter(contentAdapter);
     }
-    void addFlower(){
+
+    void addFlower() {
         String sql = "Create table if not exists Flower(idflower char(50) primary key, nameflower char(50), category char(50),price int,color char(50),imgflower int,quantity int)";
         db.execSQL(sql);
-        sql = "Insert into Flower values ('lver', 'Lavie Rose', 'Hoa', 80000, 'Trắng',"+R.drawable.lavierose+", 20),"+
-                "('jdf', 'RedRose', 'Hoa', 78000, 'Đỏ',"+R.drawable.hoahong1+", 20)";
-        db.execSQL(sql);
+//        sql = "Insert into Flower values ('lver', 'Lavie Rose', 'Hoa', 80000, 'Trắng',"+R.drawable.lavierose+", 20),"+
+//                "('jdf', 'RedRose', 'Hoa', 78000, 'Đỏ',"+R.drawable.hoahong1+", 20)";
+//        db.execSQL(sql);
         sql = "select * from Flower";
         Cursor cursor = db.rawQuery(sql, null);
-        try{
-            while (!cursor.isLast()){
+        try {
+            flowers = new ArrayList<>();
+            while (!cursor.isLast()) {
                 cursor.moveToNext();
                 String id = cursor.getString(0);
                 String name = cursor.getString(1);
                 String category = cursor.getString(2);
                 int price = cursor.getInt(3);
-                String color =cursor.getString(4);
+                String color = cursor.getString(4);
                 int imgid = cursor.getInt(5);
                 int quantity = cursor.getInt(6);
                 Flower fl = new Flower(id, name, category, price, color, imgid, quantity);
                 flowers.add(fl);
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return;
         }
     }
+
+    void setEvent()
+    {
+        EditText editText = findViewById(R.id.ET_SearchFlower);
+        editText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN
+                        && i == KeyEvent.KEYCODE_ENTER) {
+                    String tukhoa = editText.getText().toString();
+                    String sql = "select * from Flower where nameflower like '%"+ tukhoa +"%'";
+                    Cursor cursor = db.rawQuery(sql, null);
+                    try {
+                        flowers = new ArrayList<>();
+                        while (!cursor.isLast()) {
+                            cursor.moveToNext();
+                            String id = cursor.getString(0);
+                            String name = cursor.getString(1);
+                            String category = cursor.getString(2);
+                            int price = cursor.getInt(3);
+                            String color = cursor.getString(4);
+                            int imgid = cursor.getInt(5);
+                            int quantity = cursor.getInt(6);
+                            Flower fl = new Flower(id, name, category, price, color, imgid, quantity);
+                            flowers.add(fl);
+                        }
+                        LoadContent();
+                    } catch (Exception e) {
+                        return false;
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+//                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+//                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+//                    // Perform action on key press
+//                    Toast.makeText(HelloFormStuff.this, edittext.getText(), Toast.LENGTH_SHORT).show();
+//                    return true;
+//                }
+//    }
 
     class View2Apdapter extends FragmentStateAdapter {
         public View2Apdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {

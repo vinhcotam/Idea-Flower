@@ -20,6 +20,10 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        email = bundle.getString("email");
+        editText = findViewById(R.id.sign_email);
+        editText.setText(email);
         ConnectDB();
         createEvent();
 
