@@ -57,6 +57,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     EditText et_namevote,et_contentvote;
     OrderAdapter orderAdapter;
     public static ArrayList<Order> mListOrder;
+    String flowerid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,21 +66,21 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         ConnectDB();
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        Toast.makeText(this, bundle.getString("flowerid"), Toast.LENGTH_LONG).show();
-        mListVote=new ArrayList<>();
-        mListVote=displayDataVote();
-        mListFlower=new ArrayList<>();
-        mListFlower=displayDataFlower();
+         flowerid = bundle.getString("flowerid");
+//        mListVote=new ArrayList<>();
+//        mListVote=displayDataVote();
+//        mListFlower=new ArrayList<>();
+//        mListFlower=displayDataFlower();
 
         //        replacFragment(new home());
 //        navigationView.getMenu().findItem(R.id.home).setCheckable(true);
         //insertData();
         loadDataChitietSP();
-        displayDataVote();
-        setDataVote();
-        setClickVote();
-        displayDataFlower();
-        setDataFlower();
+//        displayDataVote();
+//        setDataVote();
+//        setClickVote();
+//        displayDataFlower();
+//        setDataFlower();
 //        setClickAddtoCart();
 
     }
@@ -151,7 +152,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     }
 
     private ArrayList<vote> displayDataVote() {
-        String sql="Select * from Vote where idflower='flower2_date'  limit 3";
+        String sql="Select * from Vote where idflower='"+flowerid+"'  limit 3";
         Cursor cursor = db.rawQuery(sql, null);
         ArrayList<vote>mListVote=new ArrayList<>();
         if(cursor.moveToFirst()){
@@ -212,7 +213,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     }
     SQLiteDatabase db = null;
     void ConnectDB(){
-        db=openOrCreateDatabase("FlowerStore.db", MODE_PRIVATE, null);
+        db=openOrCreateDatabase("IdeaFlower.db", MODE_PRIVATE, null);
         //tạo table nếu chưa có
 //        String sql = "create table if not exists Flower(idflower char(50) primary key, nameflower char(50), category char(50),price int,color char(50),imgflower int,quantity int)";
         String sql1="create table if not exists Vote(email char(50),content char(100),numstar float,idflower char(50),foreign key (idflower)references Flower(idflower))";
@@ -239,10 +240,10 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     int price,quantity,imgflower;
     float ratingvote;
     void loadDataChitietSP() {
-        String sql = "Select * from Flower where idflower='flower2_date'";
+        String sql = "Select * from Flower where idflower= '"+flowerid+"'";
         Cursor cursor = db.rawQuery(sql, null);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
+        cursor.moveToNext();
+        while (!cursor.isLast()) {
             idflower = cursor.getString(0);
             nameflower = cursor.getString(1);
             catagory = cursor.getString(2);

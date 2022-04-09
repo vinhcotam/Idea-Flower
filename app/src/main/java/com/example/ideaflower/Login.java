@@ -78,17 +78,17 @@ public class Login extends AppCompatActivity {
 //            }
 //        });
         //test tính năng
-//        button = findViewById(R.id.testtinhnang);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Login.this, testloadcontent.class);
-//                startActivity(intent);
-//            }
-//        });
+        button = findViewById(R.id.testtinhnang);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, FlowerDetail.class);
+                startActivity(intent);
+            }
+        });
     }
     void ConnectDB(){
-        db=openOrCreateDatabase("FlowerStore.db", MODE_PRIVATE, null);
+        db=openOrCreateDatabase("IdeaFlower.db", MODE_PRIVATE, null);
         //tạo table nếu chưa có
         String sql = "create table if not exists Account(Email char(50) primary key, Password char(50), Name char(50))";
         db.execSQL(sql);

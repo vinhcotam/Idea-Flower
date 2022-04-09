@@ -80,7 +80,7 @@ public class Signup extends AppCompatActivity {
     }
     SQLiteDatabase db=null;
     void ConnectDB(){
-        db=openOrCreateDatabase("FlowerStore.db", MODE_PRIVATE, null);
+        db=openOrCreateDatabase("IdeaFlower.db", MODE_PRIVATE, null);
         //tạo table nếu chưa có
         String sql = "create table if not exists Account(Email char(50) primary key, Password char(50), Name char(50))";
         db.execSQL(sql);

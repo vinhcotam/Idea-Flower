@@ -46,7 +46,7 @@ public class Homepage extends AppCompatActivity {
                 new View2Apdapter(this)
         );
         //setContentView(R.layout.activity_homepage);
-        db = openOrCreateDatabase("FlowerShop.db", MODE_PRIVATE, null);
+        db = openOrCreateDatabase("IdeaFlower.db", MODE_PRIVATE, null);
         addFlower();
         setEvent();
         LoadContent();
