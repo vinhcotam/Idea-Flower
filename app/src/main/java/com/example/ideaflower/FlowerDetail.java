@@ -35,12 +35,9 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class FlowerDetail extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class FlowerDetail extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private  static final int Fragment_home=0;
-    private  static final int Fragment_cart=1;
-    private  static final int Fragment_order=2;
-    private int mCurrentFragment=Fragment_home;
+    private int mSelectId;
     private  ArrayList<vote> mListVote;
     Spinner spinner;
     private ArrayList<Flower> mListFlower;
@@ -72,9 +69,6 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         mListVote=displayDataVote();
         mListFlower=new ArrayList<>();
         mListFlower=displayDataFlower();
-
-        //        replacFragment(new home());
-//        navigationView.getMenu().findItem(R.id.home).setCheckable(true);
 //        insertData();
         loadDataChitietSP();
         displayDataVote();
@@ -208,12 +202,6 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         rcv_flower=findViewById(R.id.rcv_flower);
         tv_category=findViewById(R.id.tv_category);
         tv_color=findViewById(R.id.tv_color);
-        if(mListOrder!=null){
-
-        }else{
-            mListOrder=new ArrayList<>();
-        }
-
     }
     SQLiteDatabase db = null;
     void ConnectDB(){
@@ -272,24 +260,24 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         }
         cursor.close();
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id=item.getItemId();
-        if(id==R.id.home){
-//            if(mCurrentFragment!=Fragment_home){
-//                replacFragment(new home());
-//                mCurrentFragment=Fragment_home;
-//
-//            }
-        }else if(id==R.id.cart){
-
-        }else if(id==R.id.order){
-
-        }else if(id==R.id.logout){
-
+        Intent intent=null;
+        item.setChecked(true);
+        mSelectId=item.getItemId();
+        if(item.getItemId()==R.id.nav_home){
+            drawerLayout.closeDrawer(GravityCompat.START);
+            intent=new Intent(FlowerDetail.this,Homepage.class);
+            startActivity(intent);
+            return true;
+        }else if(item.getItemId()==R.id.nav_cart){
+            drawerLayout.closeDrawer(GravityCompat.START);
+            intent=new Intent(FlowerDetail.this,Login.class);
+            startActivity(intent);
+            return true;
         }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
+        return false;
     }
     //xly an nut back tren dthoai
     @Override
@@ -300,10 +288,5 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
-    private void replacFragment(Fragment fragment){
-        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.contentframe,fragment);
-        transaction.commit();
 
-    }
 }

@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item android:id="@+id/home"
+        <item android:id="@+id/nav_home"
             android:title="@string/home"
             android:icon="@drawable/ic_home">
         </item>
-        <item android:id="@+id/cart"
+        <item android:id="@+id/nav_cart"
             android:title="@string/cart"
             android:icon="@drawable/ic_cart">
         </item>
-        <item android:id="@+id/order"
+        <item android:id="@+id/nav_order"
             android:title="@string/order"
             android:icon="@drawable/ic_order">
         </item>
     </group>
     <item android:title="Danh mục hoa">
         <menu >
-            <item android:id="@+id/caycanh"
+            <item android:id="@+id/nav_caycanh"
                 android:title="Cây cảnh"
                 android:icon="@drawable/ic_flower">
 
             </item>
-            <item android:id="@+id/chucmung"
+            <item android:id="@+id/nav_chucmung"
                 android:title="Hoa chúc mừng"
                 android:icon="@drawable/ic_flower">
 
             </item>
-            <item android:id="@+id/tinhyeu"
+            <item android:id="@+id/nav_tinhyeu"
                 android:title="Hoa tình yêu"
                 android:icon="@drawable/ic_flower">
 
             </item>
-            <item android:id="@+id/tangle"
+            <item android:id="@+id/nav_tangle"
                 android:title="Hoa tang lễ"
                 android:icon="@drawable/ic_flower">
 
@@ -41,11 +41,11 @@
     </item>
     <item android:title="Tài khoản">
         <menu >
-            <item android:id="@+id/acc"
+            <item android:id="@+id/nav_acc"
                 android:title="Quản lý tài khoản"
                 android:icon="@drawable/ic_acc">
             </item>
-            <item android:id="@+id/logout"
+            <item android:id="@+id/nav_logout"
                 android:title="@string/logout"
                 android:icon="@drawable/ic_logout">
             </item>
