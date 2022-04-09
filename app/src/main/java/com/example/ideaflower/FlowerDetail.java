@@ -67,20 +67,20 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
          flowerid = bundle.getString("flowerid");
-//        mListVote=new ArrayList<>();
-//        mListVote=displayDataVote();
-//        mListFlower=new ArrayList<>();
-//        mListFlower=displayDataFlower();
+        mListVote=new ArrayList<>();
+        mListVote=displayDataVote();
+        mListFlower=new ArrayList<>();
+        mListFlower=displayDataFlower();
 
         //        replacFragment(new home());
 //        navigationView.getMenu().findItem(R.id.home).setCheckable(true);
-        //insertData();
+//        insertData();
         loadDataChitietSP();
-//        displayDataVote();
-//        setDataVote();
-//        setClickVote();
-//        displayDataFlower();
-//        setDataFlower();
+        displayDataVote();
+        setDataVote();
+        setClickVote();
+        displayDataFlower();
+        setDataFlower();
 //        setClickAddtoCart();
 
     }
@@ -104,7 +104,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     }
 
     private ArrayList<Flower> displayDataFlower() {
-        String sql="Select * from Flower where category='Date'";
+        String sql="Select * from Flower where category='"+catagory+"'";
         Cursor cursor = db.rawQuery(sql, null);
         ArrayList<Flower>mListFlower=new ArrayList<>();
         if(cursor.moveToFirst()){
@@ -137,7 +137,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
                 if(name==null||content==null||ratingvote==0){
                     Toast.makeText(FlowerDetail.this,"Vui lòng nhập đầy đủ thông tin",Toast.LENGTH_LONG).show();
                 }else{
-                    String sql="Insert into Vote(email,content,numstar,idflower) values ('"+name+"','"+content+"',"+ratingvote+",'flower2_date')";
+                    String sql="Insert into Vote(email,content,numstar,idflower) values ('"+name+"','"+content+"',"+ratingvote+",'"+flowerid+"')";
                     db.execSQL(sql);
                     displayDataVote();
                     setDataVote();
@@ -230,9 +230,14 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
                 +",('flower3_date','La Vie En Rose','Date',500000,'pink and violet',"+R.drawable.hoa3_date+",100)"
                 +",('flower4_date','Violet Lover','Date',700000,'pink and violet',"+R.drawable.hoa4_date+",100)";
 //        String sql="Insert into Flower values('flower5_date','Firt Date','Date',300000,'yellow and white','hoa4_date')";
-        String sql1="Insert into Vote values('test','test',1,'flower2_date')"
-                +",('test1','test1',2,'flower2_date')"
-                +",('test2','test2',3,'flower2_date')";
+//        String sql1="Insert into Vote values('test','test',1,'flower2_date')"
+//                +",('test1','test1',2,'flower2_date')"
+//                +",('test2','test2',3,'flower2_date')";
+////        db.execSQL(sql);
+//        db.execSQL(sql1);
+                String sql1="Insert into Vote values('test','test',1,'lver')"
+                +",('test1','test1',2,'lver')"
+                +",('test2','test2',3,'lver')";
 //        db.execSQL(sql);
         db.execSQL(sql1);
     }
@@ -242,8 +247,8 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     void loadDataChitietSP() {
         String sql = "Select * from Flower where idflower= '"+flowerid+"'";
         Cursor cursor = db.rawQuery(sql, null);
-        cursor.moveToNext();
-        while (!cursor.isLast()) {
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
             idflower = cursor.getString(0);
             nameflower = cursor.getString(1);
             catagory = cursor.getString(2);
