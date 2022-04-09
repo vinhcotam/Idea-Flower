@@ -44,7 +44,8 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     private  ArrayList<vote> mListVote;
     Spinner spinner;
     private ArrayList<Flower> mListFlower;
-    TextView tv_name,tv_price,tv_motasp,tv_quantity,tv_namesptt,tv_pricesptt,tv_thongbao,tv_total;
+    TextView tv_name,tv_price,tv_motasp,tv_quantity,tv_namesptt,tv_pricesptt,
+            tv_category,tv_color,tv_thongbao,tv_total;
     Button bt_addtocart,bt_vote,bt_thanhtoan,bt_tieptuc;
     ImageView img_chitiet,img_sptt;
     NavigationView navigationView;
@@ -104,7 +105,8 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     }
 
     private ArrayList<Flower> displayDataFlower() {
-        String sql="Select * from Flower where category='"+catagory+"'";
+        String category=  tv_category.getText().toString();
+        String sql="Select * from Flower where category='"+category+"'";
         Cursor cursor = db.rawQuery(sql, null);
         ArrayList<Flower>mListFlower=new ArrayList<>();
         if(cursor.moveToFirst()){
@@ -152,7 +154,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     }
 
     private ArrayList<vote> displayDataVote() {
-        String sql="Select * from Vote where idflower='"+flowerid+"'  limit 3";
+        String sql="Select * from Vote where idflower='"+flowerid+"'  limit 5";
         Cursor cursor = db.rawQuery(sql, null);
         ArrayList<vote>mListVote=new ArrayList<>();
         if(cursor.moveToFirst()){
@@ -182,7 +184,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         img_chitiet=findViewById(R.id.img_chitiet);
         tv_name=findViewById(R.id.tv_name);
         tv_price=findViewById(R.id.tv_price);
-        tv_motasp=findViewById(R.id.tv_motasp);
+//        tv_motasp=findViewById(R.id.tv_motasp);
         bt_addtocart=findViewById(R.id.bt_addtocart);
         navigationView=findViewById(R.id.navigationview);
         tv_quantity=findViewById(R.id.tv_quantity);
@@ -204,6 +206,8 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         tv_pricesptt=findViewById(R.id.tv_namesptt);
         img_sptt=findViewById(R.id.img_sptt);
         rcv_flower=findViewById(R.id.rcv_flower);
+        tv_category=findViewById(R.id.tv_category);
+        tv_color=findViewById(R.id.tv_color);
         if(mListOrder!=null){
 
         }else{
@@ -259,8 +263,9 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
             tv_price.append(" " + price + " vnđ");
             tv_name.append(nameflower);
             tv_quantity.append(" "+quantity);
-
-            tv_motasp.setText("Phân loại hoa: " + catagory + " " + " màu sắc: " + color);
+            tv_category.setText(catagory);
+            tv_color.setText(color);
+//            tv_motasp.setText("Phân loại hoa: " + catagory + " " + " màu sắc: " + color);
             //lấy ảnh từ db, chuyển về dạng int
             img_chitiet.setImageResource(imgflower);
             cursor.moveToNext();
