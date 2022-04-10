@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -139,8 +140,10 @@ public class Homepage extends AppCompatActivity {
     Button btnaddcart;
     RatingBar rbar;
     LinearLayout lay;
+    ImageButton imgBT_cart;
 
     void LoadContent(int page) {
+
         imgv = findViewById(R.id.imgFlower1);
         textname = findViewById(R.id.TV_name1);
         textprice = findViewById(R.id.TV_pricef1);
@@ -210,6 +213,7 @@ public class Homepage extends AppCompatActivity {
         btnaddcart = findViewById(R.id.BT_add10);
         rbar = findViewById(R.id.rating10);
         lay = findViewById(R.id.lay10);
+        imgBT_cart=findViewById(R.id.imgBT_cart);
         Design(page, 10);
     }
     void Design(int start, int position){
@@ -225,58 +229,58 @@ public class Homepage extends AppCompatActivity {
         imgv.setImageResource(flowers.get(index).getImgid());
         textname.setText(flowers.get(index).getFlowername());
         textprice.setText("Giá: "+flowers.get(index).getPrice()+ " đ");
-        btnaddcart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()){
-                    case R.id.imgFlower1:{
-                        flowerid = flowers.get(0).getFlowerid();
-                        break;
-                    }
-                    case R.id.imgFlower2:{
-                        flowerid = flowers.get(1).getFlowerid();
-                        break;
-                    }
-                    case R.id.imgFlower3:{
-                        flowerid = flowers.get(2).getFlowerid();
-                        break;
-                    }
-                    case R.id.imgFlower4:{
-                        flowerid = flowers.get(3).getFlowerid();
-                        break;
-                    }
-                    case R.id.imgFlower5:{
-                        flowerid = flowers.get(4).getFlowerid();
-                        break;
-                    }
-                    case R.id.imgFlower6:{
-                        flowerid = flowers.get(5).getFlowerid();
-                        break;
-                    }
-                    case R.id.imgFlower7:{
-                        flowerid = flowers.get(6).getFlowerid();
-                        break;
-                    }
-                    case R.id.imgFlower8:{
-                        flowerid = flowers.get(7).getFlowerid();
-                        break;
-                    }
-                    case R.id.imgFlower9:{
-                        flowerid = flowers.get(8).getFlowerid();
-                        break;
-                    }
-                    case R.id.imgFlower10:{
-                        flowerid = flowers.get(9).getFlowerid();
-                        break;
-                    }
-                }
-                Intent intent=new Intent(Homepage.this,FlowerDetail.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("flowerid", flowerid);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
+//        btnaddcart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                switch (view.getId()){
+//                    case R.id.imgFlower1:{
+//                        flowerid = flowers.get(0).getFlowerid();
+//                        break;
+//                    }
+//                    case R.id.imgFlower2:{
+//                        flowerid = flowers.get(1).getFlowerid();
+//                        break;
+//                    }
+//                    case R.id.imgFlower3:{
+//                        flowerid = flowers.get(2).getFlowerid();
+//                        break;
+//                    }
+//                    case R.id.imgFlower4:{
+//                        flowerid = flowers.get(3).getFlowerid();
+//                        break;
+//                    }
+//                    case R.id.imgFlower5:{
+//                        flowerid = flowers.get(4).getFlowerid();
+//                        break;
+//                    }
+//                    case R.id.imgFlower6:{
+//                        flowerid = flowers.get(5).getFlowerid();
+//                        break;
+//                    }
+//                    case R.id.imgFlower7:{
+//                        flowerid = flowers.get(6).getFlowerid();
+//                        break;
+//                    }
+//                    case R.id.imgFlower8:{
+//                        flowerid = flowers.get(7).getFlowerid();
+//                        break;
+//                    }
+//                    case R.id.imgFlower9:{
+//                        flowerid = flowers.get(8).getFlowerid();
+//                        break;
+//                    }
+//                    case R.id.imgFlower10:{
+//                        flowerid = flowers.get(9).getFlowerid();
+//                        break;
+//                    }
+//                }
+//                Intent intent=new Intent(Homepage.this,FlowerDetail.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("flowerid", flowerid);
+//                intent.putExtras(bundle);
+//                startActivity(intent);
+//            }
+//        });
 
         imgv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -331,6 +335,7 @@ public class Homepage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     class View2Apdapter extends FragmentStateAdapter {

@@ -44,6 +44,14 @@ public class cartFlower extends AppCompatActivity {
             }
         });
     }
+    private void setClickThanhToan(){
+        bt_thanhtoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
 
     private void deleteCart() {
         lv_cart.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

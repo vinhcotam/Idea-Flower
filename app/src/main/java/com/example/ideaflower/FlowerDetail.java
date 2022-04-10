@@ -42,9 +42,9 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     private int mSelectId;
     private  ArrayList<vote> mListVote;
     private ArrayList<Flower> mListFlower;
-    TextView tv_name,tv_price,tv_motasp,tv_quantity,tv_namesptt,tv_pricesptt,
-            tv_category,tv_color,tv_thongbao,tv_total;
-    Button bt_addtocart,bt_vote,bt_thanhtoan,bt_tieptuc;
+    TextView tv_name,tv_price,tv_quantity,tv_namesptt,tv_pricesptt,
+            tv_category,tv_color;
+    Button bt_addtocart,bt_vote;
     ImageView img_chitiet,img_sptt;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
@@ -66,6 +66,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
          flowerid = bundle.getString("flowerid");
+         String email=bundle.getString("email");
         mListVote=new ArrayList<>();
         mListVote=displayDataVote();
         mListFlower=new ArrayList<>();
@@ -303,20 +304,22 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
             return true;
         }
-        return false;
+        return true;
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu,menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.nav_home:
                 Intent intent=new Intent(FlowerDetail.this, Homepage.class);
                 startActivity(intent);
+                return true;
             case R.id.menugiohang:
                  intent=new Intent(FlowerDetail.this, cartFlower.class);
                 startActivity(intent);
+                return true;
 
         }
         return super.onOptionsItemSelected(item);
