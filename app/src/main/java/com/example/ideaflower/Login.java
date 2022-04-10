@@ -35,6 +35,11 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 getemail();
                 getpassword();
+//                if(email.equals("admin") && password.equals("admin")){
+//                    Intent intent = new Intent(Login.this, Admin_flower.class);
+//                    startActivity(intent);
+//                    return;
+//                }
                 String sql = "select * from account where Email='"+email+"' and Password='"+password+"'";
                 Cursor cursor = db.rawQuery(sql, null);
                 try{

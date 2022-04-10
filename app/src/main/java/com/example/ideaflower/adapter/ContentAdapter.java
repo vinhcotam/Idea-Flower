@@ -48,7 +48,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentH
     @Override
     public void onBindViewHolder(@NonNull ContentHolder holder, int position) {
 
-        index = holder.getAdapterPosition();
+        index = position;
         holder.imgv.setImageResource(flowers.get(index*2).getImgid());
         holder.tvname.setText(flowers.get(index*2).getFlowername());
         holder.tvprice.setText(String.valueOf(flowers.get(index*2).getPrice()) + "đ");
@@ -62,7 +62,6 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentH
                 bundle.putString("email", email);
                 intent.putExtras(bundle);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                holder.tvname.setText("dauma");
                 context.startActivity(intent);
             }
         });

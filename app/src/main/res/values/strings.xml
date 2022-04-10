@@ -32,5 +32,7 @@
     <string name="noitem">No item</string>
     <string name="noprice">Hết hàng</string>
     <string name="addtocart">Thêm vào giỏ</string>
+    <string name="themhoa">Thêm hoa</string>
+    <string name="FlowerTool">Công cụ quản lý hoa</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

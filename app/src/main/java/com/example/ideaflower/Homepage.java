@@ -19,8 +19,14 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ideaflower.adapter.ContentAdapter;
@@ -54,25 +60,17 @@ public class Homepage extends AppCompatActivity {
         );
         //setContentView(R.layout.activity_homepage);
         db = openOrCreateDatabase("IdeaFlower.db", MODE_PRIVATE, null);
-        addFlower();
+        getDataFlower();
         setEvent();
-        LoadContent();
+        LoadContent(0);
     }
 
     ArrayList<Flower> flowers = new ArrayList<Flower>();
     String email = "";
     SQLiteDatabase db = null;
 
-    void LoadContent() {
-        RecyclerView recyclerView = findViewById(R.id.ViewContent);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        ContentAdapter contentAdapter = new ContentAdapter(flowers, email, getApplicationContext());
-        recyclerView.setAdapter(contentAdapter);
-    }
 
-    void addFlower() {
+    void getDataFlower() {
         String sql = "Create table if not exists Flower(idflower char(50) primary key, nameflower char(50), category char(50),price int,color char(50),imgflower int,quantity int)";
         db.execSQL(sql);
 //        sql = "Insert into Flower values ('lver', 'Lavie Rose', 'Hoa', 80000, 'Trắng',"+R.drawable.lavierose+", 20),"+
@@ -124,7 +122,7 @@ public class Homepage extends AppCompatActivity {
                             Flower fl = new Flower(id, name, category, price, color, imgid, quantity);
                             flowers.add(fl);
                         }
-                        LoadContent();
+                        LoadContent(0);
                     } catch (Exception e) {
                         return false;
                     }
@@ -134,13 +132,152 @@ public class Homepage extends AppCompatActivity {
             }
         });
     }
-//                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-//                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-//                    // Perform action on key press
-//                    Toast.makeText(HelloFormStuff.this, edittext.getText(), Toast.LENGTH_SHORT).show();
-//                    return true;
-//                }
-//    }
+    ImageView imgv;
+    TextView textname;
+    TextView textprice;
+    Button btnaddcart;
+    RatingBar rbar;
+    LinearLayout lay;
+    void LoadContent(int page) {
+        imgv = findViewById(R.id.imgFlower1);
+        textname = findViewById(R.id.TV_name1);
+        textprice = findViewById(R.id.TV_pricef1);
+        btnaddcart = findViewById(R.id.BT_add1);
+        rbar = findViewById(R.id.rating1);
+        lay = findViewById(R.id.lay1);
+        Design(page, 1);
+        imgv = findViewById(R.id.imgFlower2);
+        textname = findViewById(R.id.TV_name2);
+        textprice = findViewById(R.id.TV_pricef2);
+        btnaddcart = findViewById(R.id.BT_add2);
+        rbar = findViewById(R.id.rating2);
+        lay = findViewById(R.id.lay2);
+        Design(page, 2);
+        imgv = findViewById(R.id.imgFlower3);
+        textname = findViewById(R.id.TV_name3);
+        textprice = findViewById(R.id.TV_pricef3);
+        btnaddcart = findViewById(R.id.BT_add3);
+        rbar = findViewById(R.id.rating3);
+        lay = findViewById(R.id.lay3);
+        Design(page, 3);
+        imgv = findViewById(R.id.imgFlower4);
+        textname = findViewById(R.id.TV_name4);
+        textprice = findViewById(R.id.TV_pricef4);
+        btnaddcart = findViewById(R.id.BT_add4);
+        rbar = findViewById(R.id.rating4);
+        lay = findViewById(R.id.lay4);
+        Design(page, 4);
+        imgv = findViewById(R.id.imgFlower5);
+        textname = findViewById(R.id.TV_name5);
+        textprice = findViewById(R.id.TV_pricef5);
+        btnaddcart = findViewById(R.id.BT_add5);
+        rbar = findViewById(R.id.rating5);
+        lay = findViewById(R.id.lay5);
+        Design(page, 5);
+        imgv = findViewById(R.id.imgFlower6);
+        textname = findViewById(R.id.TV_name6);
+        textprice = findViewById(R.id.TV_pricef6);
+        btnaddcart = findViewById(R.id.BT_add6);
+        rbar = findViewById(R.id.rating6);
+        lay = findViewById(R.id.lay6);
+        Design(page, 6);
+        imgv = findViewById(R.id.imgFlower7);
+        textname = findViewById(R.id.TV_name7);
+        textprice = findViewById(R.id.TV_pricef7);
+        btnaddcart = findViewById(R.id.BT_add7);
+        rbar = findViewById(R.id.rating7);
+        lay = findViewById(R.id.lay7);
+        Design(page, 7);
+        imgv = findViewById(R.id.imgFlower8);
+        textname = findViewById(R.id.TV_name8);
+        textprice = findViewById(R.id.TV_pricef8);
+        btnaddcart = findViewById(R.id.BT_add8);
+        rbar = findViewById(R.id.rating8);
+        lay = findViewById(R.id.lay8);
+        Design(page, 8);
+        imgv = findViewById(R.id.imgFlower9);
+        textname = findViewById(R.id.TV_name9);
+        textprice = findViewById(R.id.TV_pricef9);
+        btnaddcart = findViewById(R.id.BT_add9);
+        rbar = findViewById(R.id.rating9);
+        lay = findViewById(R.id.lay9);
+        Design(page, 9);
+        imgv = findViewById(R.id.imgFlower10);
+        textname = findViewById(R.id.TV_name10);
+        textprice = findViewById(R.id.TV_pricef10);
+        btnaddcart = findViewById(R.id.BT_add10);
+        rbar = findViewById(R.id.rating10);
+        lay = findViewById(R.id.lay10);
+        Design(page, 10);
+    }
+    void Design(int start, int position){
+        int index = start*10+position-1;
+        if(flowers.size()==0){
+
+        }
+        if(index>=flowers.size()){
+            lay.setVisibility(View.GONE);
+            return;
+        }
+        lay.setVisibility(View.VISIBLE);
+        imgv.setImageResource(flowers.get(index).getImgid());
+        textname.setText(flowers.get(index).getFlowername());
+        textprice.setText("Giá: "+flowers.get(index).getPrice()+ " đ");
+        imgv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String flowerid="";
+                switch (view.getId()){
+                    case R.id.imgFlower1:{
+                        flowerid = flowers.get(0).getFlowerid();
+                        break;
+                    }
+                    case R.id.imgFlower2:{
+                        flowerid = flowers.get(1).getFlowerid();
+                        break;
+                    }
+                    case R.id.imgFlower3:{
+                        flowerid = flowers.get(2).getFlowerid();
+                        break;
+                    }
+                    case R.id.imgFlower4:{
+                        flowerid = flowers.get(3).getFlowerid();
+                        break;
+                    }
+                    case R.id.imgFlower5:{
+                        flowerid = flowers.get(4).getFlowerid();
+                        break;
+                    }
+                    case R.id.imgFlower6:{
+                        flowerid = flowers.get(5).getFlowerid();
+                        break;
+                    }
+                    case R.id.imgFlower7:{
+                        flowerid = flowers.get(6).getFlowerid();
+                        break;
+                    }
+                    case R.id.imgFlower8:{
+                        flowerid = flowers.get(7).getFlowerid();
+                        break;
+                    }
+                    case R.id.imgFlower9:{
+                        flowerid = flowers.get(8).getFlowerid();
+                        break;
+                    }
+                    case R.id.imgFlower10:{
+                        flowerid = flowers.get(9).getFlowerid();
+                        break;
+                    }
+                }
+                Intent intent = new Intent(Homepage.this, FlowerDetail.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("email", email);
+                bundle.putString("flowerid", flowerid);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+    }
 
     class View2Apdapter extends FragmentStateAdapter {
         public View2Apdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
