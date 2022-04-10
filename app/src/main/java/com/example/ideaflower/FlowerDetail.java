@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import com.example.ideaflower.adapter.OrderAdapter;
 import com.example.ideaflower.adapter.flowerAdapter;
 import com.example.ideaflower.adapter.voteAdapter;
+import com.example.ideaflower.classs.Cart;
 import com.example.ideaflower.classs.Flower;
 import com.example.ideaflower.classs.Order;
 import com.example.ideaflower.classs.vote;
@@ -39,7 +41,6 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
 
     private int mSelectId;
     private  ArrayList<vote> mListVote;
-    Spinner spinner;
     private ArrayList<Flower> mListFlower;
     TextView tv_name,tv_price,tv_motasp,tv_quantity,tv_namesptt,tv_pricesptt,
             tv_category,tv_color,tv_thongbao,tv_total;
@@ -53,8 +54,8 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     com.example.ideaflower.adapter.flowerAdapter flowerAdapter;
     RatingBar rating1,rating;
     EditText et_namevote,et_contentvote;
-    OrderAdapter orderAdapter;
-    public static ArrayList<Order> mListOrder;
+//    OrderAdapter orderAdapter;
+//    public static ArrayList<Order> mListOrder;
     String flowerid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +77,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         setClickVote();
         displayDataFlower();
         setDataFlower();
-//        setClickAddtoCart();
+        setClickAddtoCart();
 
     }
 
@@ -86,7 +87,32 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 //lay so luong
+                if(Homepage.mListCart.size()>0){
+                    int sl=1;
+                    boolean exit=false;
+                    for(int i=0;i<Homepage.mListCart.size();i++){
+                        if(Homepage.mListCart.get(i).getIdflower()==idflower){
+                            Homepage.mListCart.get(i).setQuantity(Homepage.mListCart.get(i).getQuantity()+sl);
+                            if(Homepage.mListCart.get(i).getQuantity()>=20){
+                                Homepage.mListCart.get(i).setQuantity(20);
+                            }
+                            Homepage.mListCart.get(i).setPrice(price*Homepage.mListCart.get(i).getQuantity());
+                            exit=true;
+                        }
+                    }
+                    if(exit==false){
+                        sl=1;
+                        int giamoi=sl*price;
+                        Homepage.mListCart.add(new Cart(idflower,nameflower,giamoi,imgflower,sl));
+                    }
+                }else{
+                    int sl=1;
+                    int giamoi=sl*price;
+                    Homepage.mListCart.add(new Cart(idflower,nameflower,giamoi,imgflower,sl));
 
+                }
+                Intent intent=new Intent(FlowerDetail.this,cartFlower.class);
+                startActivity(intent);
             }
         });
     }
@@ -106,14 +132,14 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         if(cursor.moveToFirst()){
             do{
                 Flower flower=new Flower();
-                idflower=cursor.getString(0);
-                nameflower=cursor.getString(1);
-                price=cursor.getInt(3);
-                imgflower=cursor.getInt(5);
-                flower.setFlowername(nameflower);
-                flower.setFlowerid(idflower);
-                flower.setPrice(price);
-                flower.setImgid(imgflower);
+                String idflower1=cursor.getString(0);
+                String nameflower1=cursor.getString(1);
+                int price1=cursor.getInt(3);
+                int imgflower1=cursor.getInt(5);
+                flower.setFlowername(nameflower1);
+                flower.setFlowerid(idflower1);
+                flower.setPrice(price1);
+                flower.setImgid(imgflower1);
                 mListFlower.add(flower);
 
             }while(cursor.moveToNext());
@@ -278,6 +304,22 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
             return true;
         }
         return false;
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.nav_home:
+                Intent intent=new Intent(FlowerDetail.this, Homepage.class);
+                startActivity(intent);
+            case R.id.menugiohang:
+                 intent=new Intent(FlowerDetail.this, cartFlower.class);
+                startActivity(intent);
+
+        }
+        return super.onOptionsItemSelected(item);
     }
     //xly an nut back tren dthoai
     @Override

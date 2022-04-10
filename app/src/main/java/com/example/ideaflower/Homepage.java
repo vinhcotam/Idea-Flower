@@ -24,11 +24,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ideaflower.adapter.ContentAdapter;
+import com.example.ideaflower.classs.Cart;
 import com.example.ideaflower.classs.Flower;
 
 import java.util.ArrayList;
 
 public class Homepage extends AppCompatActivity {
+    public  static ArrayList<Cart> mListCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,11 @@ public class Homepage extends AppCompatActivity {
 //        Drawable drawable = (Drawable) getDrawable(R.drawable.banner1);
 //        ImageView img = (ImageView) findViewById(R.id.imageView);
 //        img.setImageDrawable(getDrawable(R.drawable.banner1));
+        if(mListCart!=null){
+
+        }else{
+            mListCart=new ArrayList<>();
+        }
         ViewPager2 vp2 = findViewById(R.id.vp2_title);
         //setContentView(R.layout.fragment_slide);
         vp2.setAdapter(

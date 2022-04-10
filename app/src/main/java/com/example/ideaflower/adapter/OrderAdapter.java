@@ -51,9 +51,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         NumberPicker np_quantity;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_nameflower=itemView.findViewById(R.id.tv_nameflower);
-            img_orderflower=itemView.findViewById(R.id.img_orderflower);
-            np_quantity=itemView.findViewById(R.id.np_quantity);
+//            tv_nameflower=itemView.findViewById(R.id.tv_nameflower);
+//            img_orderflower=itemView.findViewById(R.id.img_orderflower);
+//            np_quantity=itemView.findViewById(R.id.np_quantity);
         }
     }
 }
