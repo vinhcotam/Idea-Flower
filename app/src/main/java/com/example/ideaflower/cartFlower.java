@@ -1,10 +1,14 @@
 package com.example.ideaflower;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,6 +31,57 @@ public class cartFlower extends AppCompatActivity {
         ActionToolBar();
         CheckData();
         setData();
+        deleteCart();
+        setClickTieptuc();
+    }
+
+    private void setClickTieptuc() {
+        bt_tieptuc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(cartFlower.this,Homepage.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void deleteCart() {
+        lv_cart.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(cartFlower.this);
+                builder.setTitle("Xác nhận xóa hoa ra khỏi giỏ hàng");
+                builder.setMessage("Xóa");
+                builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(Homepage.mListCart.size()<=0){
+                            tv_thongbao.setVisibility(View.VISIBLE);
+                        }else{
+                            Homepage.mListCart.remove(position);
+                            cartAdapter.notifyDataSetChanged();
+                            setData();
+                            if(Homepage.mListCart.size()<=0){
+                                tv_thongbao.setVisibility(View.VISIBLE);
+                            }else{
+                                tv_thongbao.setVisibility(View.INVISIBLE);
+                                cartAdapter.notifyDataSetChanged();
+                                setData();
+                            }
+                        }
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        cartAdapter.notifyDataSetChanged();
+                        setData();
+                    }
+                });
+                builder.show();
+                return true;
+            }
+        });
     }
 
     public static void setData() {
