@@ -34,5 +34,6 @@
     <string name="addtocart">Thêm vào giỏ</string>
     <string name="themhoa">Thêm hoa</string>
     <string name="FlowerTool">Công cụ quản lý hoa</string>
+    <string name="buy">Đặt hàng</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
