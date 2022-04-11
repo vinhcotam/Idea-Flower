@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 
 public class FlowerDetail extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     String email="";
+    ImageButton imgBT_cart;
     private int mSelectId;
     private  ArrayList<vote> mListVote;
     private ArrayList<Flower> mListFlower;
@@ -79,6 +81,21 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         displayDataFlower();
         setDataFlower();
         setClickAddtoCart();
+        setClickCartImgButton();
+
+    }
+
+    private void setClickCartImgButton() {
+        imgBT_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(FlowerDetail.this, cartFlower.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("email",email);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -231,6 +248,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         rcv_flower=findViewById(R.id.rcv_flower);
         tv_category=findViewById(R.id.tv_category);
         tv_color=findViewById(R.id.tv_color);
+        imgBT_cart=findViewById(R.id.imgBT_cart);
     }
     SQLiteDatabase db = null;
     void ConnectDB(){
@@ -295,41 +313,41 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         Intent intent=null;
         item.setChecked(true);
         mSelectId=item.getItemId();
-        if(item.getItemId()==R.id.nav_home){
-            drawerLayout.closeDrawer(GravityCompat.START);
-            intent=new Intent(FlowerDetail.this,Homepage.class);
-            startActivity(intent);
-            return true;
-        }else if(item.getItemId()==R.id.nav_cart){
-            drawerLayout.closeDrawer(GravityCompat.START);
-            intent=new Intent(FlowerDetail.this,Login.class);
-            Bundle bundle=new Bundle();
-            bundle.putString("email",email);
-            intent.putExtras(bundle);
-            startActivity(intent);
-            return true;
-        }
+//        if(item.getItemId()==R.id.nav_home){
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//            intent=new Intent(FlowerDetail.this,Homepage.class);
+//            startActivity(intent);
+//            return true;
+//        }else if(item.getItemId()==R.id.nav_cart){
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//            intent=new Intent(FlowerDetail.this,Login.class);
+//            Bundle bundle=new Bundle();
+//            bundle.putString("email",email);
+//            intent.putExtras(bundle);
+//            startActivity(intent);
+//            return true;
+//        }
         return true;
     }
     public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu,menu);
+//        getMenuInflater().inflate(R.menu.menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
     public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case R.id.nav_home:
-                Intent intent=new Intent(FlowerDetail.this, Homepage.class);
-                startActivity(intent);
-                return true;
-            case R.id.menugiohang:
-                 intent=new Intent(FlowerDetail.this, cartFlower.class);
-                 Bundle bundle=new Bundle();
-                 bundle.putString("email",email);
-                 intent.putExtras(bundle);
-                startActivity(intent);
-                return true;
-
-        }
+//        switch (item.getItemId()){
+//            case R.id.nav_home:
+//                Intent intent=new Intent(FlowerDetail.this, Homepage.class);
+//                startActivity(intent);
+//                return true;
+//            case R.id.menugiohang:
+//                 intent=new Intent(FlowerDetail.this, cartFlower.class);
+//                 Bundle bundle=new Bundle();
+//                 bundle.putString("email",email);
+//                 intent.putExtras(bundle);
+//                startActivity(intent);
+//                return true;
+//
+//        }
         return super.onOptionsItemSelected(item);
     }
     //xly an nut back tren dthoai

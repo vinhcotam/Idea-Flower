@@ -38,6 +38,7 @@ public class cartFlower extends AppCompatActivity {
         setData();
         deleteCart();
         setClickTieptuc();
+        setClickThanhToan();
     }
     private void setClickTieptuc() {
         bt_tieptuc.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +58,12 @@ public class cartFlower extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(Homepage.mListCart.size()>0){
-                    Intent intent=new Intent();
+                    Intent intent=new Intent(cartFlower.this,Checkout.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putString("email",email);
+                    bundle.putInt("total", total);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(),"Giỏ hàng trống, không thể thanh toán được",Toast.LENGTH_LONG).show();
                 }
@@ -103,9 +109,9 @@ public class cartFlower extends AppCompatActivity {
             }
         });
     }
-
+    static int total=0;
     public static void setData() {
-        int total=0;
+
         for(int i=0;i<Homepage.mListCart.size();i++){
             total+=Homepage.mListCart.get(i).getPrice();
         }

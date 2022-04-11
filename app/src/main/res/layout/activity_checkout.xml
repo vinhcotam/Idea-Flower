@@ -31,6 +31,9 @@
                 android:text="Tên người nhận" />
 
             <EditText
+                android:id="@+id/et_namepay"
+                android:minHeight="48dp"
+                android:hint="Nhập tên người mua"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -46,8 +49,11 @@
                 android:text="Số điện thoại" />
 
             <EditText
+                android:id="@+id/et_phonepay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:hint="Nhập sđt người mua"
+                android:minHeight="48dp"
                 android:inputType="phone" />
         </TableRow>
 
@@ -61,13 +67,17 @@
                 android:text="Địa chỉ nhận hàng" />
 
             <EditText
+                android:id="@+id/et_locationpay"
+                android:hint="Nhập địa chỉ"
                 android:layout_width="wrap_content"
+                android:minHeight="48dp"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
         </TableRow>
     </TableLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -75,10 +85,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/button"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,6 +94,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/tv_totalpay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.00"
@@ -95,12 +103,12 @@
 
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/bt_pay"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/buy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </LinearLayout>

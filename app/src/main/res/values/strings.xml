@@ -31,13 +31,11 @@
     <string name="flower">Hoa</string>
     <string name="noitem">No item</string>
     <string name="noprice">Hết hàng</string>
-    <string name="addtocart">Thêm vào giỏ</string>
+    <string name="addtocart">Xem chi tiết</string>
     <string name="viewdetailt">Xem chi tiết</string>
     <string name="themhoa">Thêm hoa</string>
     <string name="FlowerTool">Công cụ quản lý hoa</string>
-<<<<<<< HEAD
     <string name="buy">Đặt hàng</string>
-=======
     <string name="title_activity_test_detail">TestDetail</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -49,6 +47,4 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
->>>>>>> 68909cbea0b45e722e4594ce2f4d1eb4a5b7ad04
-    <!-- TODO: Remove or change this placeholder text -->
 </resources>
