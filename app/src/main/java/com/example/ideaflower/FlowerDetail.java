@@ -51,13 +51,11 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar toolbar,tb_cart;
-    RecyclerView rcv_vote,rcv_flower,rcv_order;
+    RecyclerView rcv_vote,rcv_flower;
     voteAdapter voteAdapter;
     com.example.ideaflower.adapter.flowerAdapter flowerAdapter;
     RatingBar rating1,rating;
     EditText et_namevote,et_contentvote;
-//    OrderAdapter orderAdapter;
-//    public static ArrayList<Order> mListOrder;
     String flowerid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +82,6 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         setClickCartImgButton();
 
     }
-
     private void setClickCartImgButton() {
         imgBT_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +95,6 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         });
 
     }
-
     private void setClickAddtoCart() {
 
         bt_addtocart.setOnClickListener(new View.OnClickListener() {
@@ -136,14 +132,12 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
             }
         });
     }
-
     private void setDataFlower() {
         flowerAdapter =new flowerAdapter(FlowerDetail.this,mListFlower);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(FlowerDetail.this,RecyclerView.HORIZONTAL,false);
         rcv_flower.setLayoutManager(linearLayoutManager);
         rcv_flower.setAdapter(flowerAdapter);
     }
-
     private ArrayList<Flower> displayDataFlower() {
         String category=  tv_category.getText().toString();
         String sql="Select * from Flower where category='"+category+"'";
@@ -168,7 +162,6 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         cursor.close();
         return mListFlower;
     }
-
     private void setClickVote() {
         bt_vote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +185,6 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
             }
         });
     }
-
     private ArrayList<vote> displayDataVote() {
         String sql="Select * from Vote where idflower='"+flowerid+"'  limit 5";
         Cursor cursor = db.rawQuery(sql, null);
@@ -228,14 +220,6 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         bt_addtocart=findViewById(R.id.bt_addtocart);
         navigationView=findViewById(R.id.navigationview);
         tv_quantity=findViewById(R.id.tv_quantity);
-        drawerLayout = findViewById(R.id.drawerlayout);
-        toolbar=findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,
-                R.string.navigation,R.string.close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
         rcv_vote=findViewById(R.id.rcv_vote);
         rating1=findViewById(R.id.rating1);
         rating=findViewById(R.id.rating);
@@ -249,6 +233,14 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         tv_category=findViewById(R.id.tv_category);
         tv_color=findViewById(R.id.tv_color);
         imgBT_cart=findViewById(R.id.imgBT_cart);
+        drawerLayout = findViewById(R.id.drawerlayout);
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,
+                R.string.navigation,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
     }
     SQLiteDatabase db = null;
     void ConnectDB(){
@@ -307,48 +299,29 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         }
         cursor.close();
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent=null;
         item.setChecked(true);
         mSelectId=item.getItemId();
-//        if(item.getItemId()==R.id.nav_home){
-//            drawerLayout.closeDrawer(GravityCompat.START);
-//            intent=new Intent(FlowerDetail.this,Homepage.class);
-//            startActivity(intent);
-//            return true;
-//        }else if(item.getItemId()==R.id.nav_cart){
-//            drawerLayout.closeDrawer(GravityCompat.START);
-//            intent=new Intent(FlowerDetail.this,Login.class);
-//            Bundle bundle=new Bundle();
-//            bundle.putString("email",email);
-//            intent.putExtras(bundle);
-//            startActivity(intent);
-//            return true;
-//        }
+        if(item.getItemId()==R.id.nav_home) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            intent=new Intent(FlowerDetail.this,Homepage.class);
+            Bundle bundle=new Bundle();
+            bundle.putString("email",email);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            return true;
+        }else if(item.getItemId()==R.id.nav_cart){
+            drawerLayout.closeDrawer(GravityCompat.START);
+            intent=new Intent(FlowerDetail.this,cartFlower.class);
+            Bundle bundle=new Bundle();
+            bundle.putString("email",email);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            return true;
+        }
         return true;
-    }
-    public boolean onCreateOptionsMenu(Menu menu){
-//        getMenuInflater().inflate(R.menu.menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-    public boolean onOptionsItemSelected(MenuItem item){
-//        switch (item.getItemId()){
-//            case R.id.nav_home:
-//                Intent intent=new Intent(FlowerDetail.this, Homepage.class);
-//                startActivity(intent);
-//                return true;
-//            case R.id.menugiohang:
-//                 intent=new Intent(FlowerDetail.this, cartFlower.class);
-//                 Bundle bundle=new Bundle();
-//                 bundle.putString("email",email);
-//                 intent.putExtras(bundle);
-//                startActivity(intent);
-//                return true;
-//
-//        }
-        return super.onOptionsItemSelected(item);
     }
     //xly an nut back tren dthoai
     @Override

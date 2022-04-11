@@ -31,17 +31,7 @@
         </FrameLayout>
     </LinearLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationview"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
 
-        android:layout_gravity="start"
-        android:pointerIcon="arrow"
-        app:headerLayout="@layout/layout_header_navigation"
-        app:menu="@menu/menu_navigation">
-
-    </com.google.android.material.navigation.NavigationView>
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_marginTop="80dp"
@@ -372,5 +362,16 @@
 
         </LinearLayout>
     </ScrollView>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:layout_gravity="start"
+        android:pointerIcon="arrow"
+        app:headerLayout="@layout/layout_header_navigation"
+        app:menu="@menu/menu_navigation">
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
