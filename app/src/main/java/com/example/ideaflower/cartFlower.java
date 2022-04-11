@@ -12,11 +12,13 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ideaflower.adapter.CartAdapter;
 
 public class cartFlower extends AppCompatActivity {
     ListView lv_cart;
+    String email;
     TextView tv_thongbao;
     static TextView tv_total;
     Button bt_thanhtoan,bt_tieptuc;
@@ -27,6 +29,9 @@ public class cartFlower extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_flower);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        email=bundle.getString("email");
         anhXa();
         ActionToolBar();
         CheckData();
@@ -34,13 +39,16 @@ public class cartFlower extends AppCompatActivity {
         deleteCart();
         setClickTieptuc();
     }
-
     private void setClickTieptuc() {
         bt_tieptuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(cartFlower.this,Homepage.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("email",email);
+                intent.putExtras(bundle);
                 startActivity(intent);
+
             }
         });
     }
@@ -48,7 +56,11 @@ public class cartFlower extends AppCompatActivity {
         bt_thanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(Homepage.mListCart.size()>0){
+                    Intent intent=new Intent();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Giỏ hàng trống, không thể thanh toán được",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

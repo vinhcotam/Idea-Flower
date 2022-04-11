@@ -62,10 +62,13 @@ public class Homepage extends AppCompatActivity {
         //setContentView(R.layout.activity_homepage);
         db = openOrCreateDatabase("IdeaFlower.db", MODE_PRIVATE, null);
         getDataFlower();
-        setEvent();
+
         LoadContent(0);
+        setEvent();
 
     }
+
+
 
     ArrayList<Flower> flowers = new ArrayList<Flower>();
     String email = "";
@@ -133,6 +136,12 @@ public class Homepage extends AppCompatActivity {
                 return false;
             }
         });
+        imgBT_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Homepage.this,cartFlower.class));
+            }
+        });
     }
     ImageView imgv;
     TextView textname;
@@ -143,7 +152,6 @@ public class Homepage extends AppCompatActivity {
     ImageButton imgBT_cart;
 
     void LoadContent(int page) {
-
         imgv = findViewById(R.id.imgFlower1);
         textname = findViewById(R.id.TV_name1);
         textprice = findViewById(R.id.TV_pricef1);

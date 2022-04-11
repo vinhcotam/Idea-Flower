@@ -38,7 +38,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 
 public class FlowerDetail extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-
+    String email="";
     private int mSelectId;
     private  ArrayList<vote> mListVote;
     private ArrayList<Flower> mListFlower;
@@ -66,7 +66,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
          flowerid = bundle.getString("flowerid");
-         String email=bundle.getString("email");
+          email=bundle.getString("email");
         mListVote=new ArrayList<>();
         mListVote=displayDataVote();
         mListFlower=new ArrayList<>();
@@ -112,8 +112,10 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
                     Homepage.mListCart.add(new Cart(idflower,nameflower,giamoi,imgflower,sl));
 
                 }
-                Intent intent=new Intent(FlowerDetail.this,cartFlower.class);
-                startActivity(intent);
+//                Intent intent=new Intent(FlowerDetail.this,cartFlower.class);
+//                startActivity(intent);
+                Toast.makeText(getApplicationContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_LONG).show();
+
             }
         });
     }
@@ -260,7 +262,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
 //        db.execSQL(sql);
         db.execSQL(sql1);
     }
-    String idflower,nameflower,catagory,color,idvote,email,content;
+    String idflower,nameflower,catagory,color,content;
     int price,quantity,imgflower;
     float ratingvote;
     void loadDataChitietSP() {
@@ -301,6 +303,9 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         }else if(item.getItemId()==R.id.nav_cart){
             drawerLayout.closeDrawer(GravityCompat.START);
             intent=new Intent(FlowerDetail.this,Login.class);
+            Bundle bundle=new Bundle();
+            bundle.putString("email",email);
+            intent.putExtras(bundle);
             startActivity(intent);
             return true;
         }
@@ -318,6 +323,9 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
                 return true;
             case R.id.menugiohang:
                  intent=new Intent(FlowerDetail.this, cartFlower.class);
+                 Bundle bundle=new Bundle();
+                 bundle.putString("email",email);
+                 intent.putExtras(bundle);
                 startActivity(intent);
                 return true;
 
