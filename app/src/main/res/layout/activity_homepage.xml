@@ -77,79 +77,57 @@
                 android:layout_height="wrap_content"
                 android:stretchColumns="1">
 
-                <TableRow android:weightSum="1">
+                <TableRow android:weightSum="0.99">
 
                     <ImageButton
-                        android:id="@+id/imgBT_danhmuc1"
+                        android:id="@+id/imgBT_cCay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
+                        android:layout_weight="0.33"
                         android:adjustViewBounds="true"
-                        android:backgroundTint="@color/cardview_shadow_end_color"
                         android:cropToPadding="false"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/cay_canh" />
-
+                        app:srcCompat="@drawable/cay" />
                     <ImageButton
-                        android:id="@+id/imgBT_danhmuc2"
+                        android:id="@+id/imgBT_cHoa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
+                        android:layout_weight="0.33"
                         android:adjustViewBounds="true"
-                        android:backgroundTint="@color/design_default_color_background"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/hoa_sinhnhat" />
-
+                        app:srcCompat="@drawable/hoa" />
                     <ImageButton
-                        android:id="@+id/imgBT_danhmuc3"
+                        android:id="@+id/imgBT_cChau"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
+                        android:layout_weight="0.33"
                         android:adjustViewBounds="true"
-                        android:backgroundTint="@color/cardview_shadow_end_color"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/hoa_tinhyeu" />
-
-                    <ImageButton
-                        android:id="@+id/imgBT_danhmuc4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:adjustViewBounds="true"
-                        android:backgroundTint="@color/cardview_shadow_end_color"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/hoa_tangle" />
+                        app:srcCompat="@drawable/chaucay" />
                 </TableRow>
 
-                <TableRow android:weightSum="1">
+                <TableRow android:weightSum="0.99">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
+                        android:layout_weight="0.33"
                         android:gravity="center"
-                        android:text="@string/caycanh" />
+                        android:text="@string/cay" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
+                        android:layout_weight="0.33"
                         android:gravity="center"
-                        android:text="@string/hoachucmung" />
+                        android:text="@string/hoa" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
+                        android:layout_weight="0.33"
                         android:gravity="center"
-                        android:text="@string/hoacuoi" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:gravity="center"
-                        android:text="@string/hoatangle" />
+                        android:text="@string/chaucay" />
                 </TableRow>
             </TableLayout>
             <TableLayout
@@ -814,6 +792,42 @@
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+                <Button
+                    android:id="@+id/backpage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#43A047"
+                    android:textColor="#ffffff"
+                    android:text="Trước"/>
+                <EditText
+                    android:id="@+id/inputpage"
+                    android:layout_width="75dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_edittext"
+                    android:text="1"
+                    android:gravity="center_horizontal"/>
+                <Button
+                    android:id="@+id/gotopage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:backgroundTint="#00897B"
+                    android:textColor="#ffffff"
+                    android:text="Go"/>
+                <Button
+                    android:id="@+id/nextpage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#43A047"
+                    android:textColor="#ffffff"
+                    android:text="Sau"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
