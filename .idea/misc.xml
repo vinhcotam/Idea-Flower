@@ -23,7 +23,12 @@
         <entry key="..\:/Users/FX505DD/OneDrive/Desktop/Idea-Flower/app/src/main/res/menu/test_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/duong/Documents/GitHub/Idea-Flower/app/src/main/res/layout/activity_add_new_flower.xml" value="0.20108695652173914" />
         <entry key="..\:/Users/duong/Documents/GitHub/Idea-Flower/app/src/main/res/layout/activity_admin_flower.xml" value="0.25" />
+<<<<<<< Updated upstream
         <entry key="..\:/Users/duong/Documents/GitHub/Idea-Flower/app/src/main/res/layout/activity_homepage.xml" value="0.21526633717737506" />
+=======
+        <entry key="..\:/Users/duong/Documents/GitHub/Idea-Flower/app/src/main/res/layout/activity_checkout.xml" value="0.25" />
+        <entry key="..\:/Users/duong/Documents/GitHub/Idea-Flower/app/src/main/res/layout/activity_homepage.xml" value="0.1" />
+>>>>>>> Stashed changes
         <entry key="..\:/Users/duong/Documents/GitHub/Idea-Flower/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/duong/Documents/GitHub/Idea-Flower/app/src/main/res/layout/activity_signup.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/duong/Documents/GitHub/Idea-Flower/app/src/main/res/layout/displayflower.xml" value="0.20108695652173914" />
