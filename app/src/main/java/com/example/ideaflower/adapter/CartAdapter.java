@@ -67,7 +67,7 @@ public class CartAdapter extends BaseAdapter {
         viewHolder.img_cart.setImageResource(cart.getImgflower());
         viewHolder.btn_values.setText(cart.getQuantity() +"");
         int sl=Integer.parseInt(viewHolder.btn_values.getText().toString());
-        if(sl>=20){
+        if(sl>=10){
             viewHolder.btn_plus.setVisibility(View.INVISIBLE);
             viewHolder.btn_minus.setVisibility(View.VISIBLE);
         }else if(sl<=1){
@@ -81,7 +81,7 @@ public class CartAdapter extends BaseAdapter {
         viewHolder.btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int slmoi=Integer.parseInt(finalViewHolder.btn_values.getText().toString()+1);
+                int slmoi=Integer.parseInt(finalViewHolder.btn_values.getText().toString())+1;
                 int slhientai= Homepage.mListCart.get(i).getQuantity();
                 int giaht= (int) Homepage.mListCart.get(i).getPrice();
                 Homepage.mListCart.get(i).setQuantity(slmoi);
@@ -90,7 +90,7 @@ public class CartAdapter extends BaseAdapter {
                 Homepage.mListCart.get(i).setPrice(giamoi);
                 finalViewHolder.tv_pricecart.setText(giamoi+ " vnd");
                 cartFlower.setData();
-                if(slmoi>19){
+                if(slmoi>9){
                     finalViewHolder.btn_plus.setVisibility(View.INVISIBLE);
                     finalViewHolder.btn_minus.setVisibility(View.VISIBLE);
                     finalViewHolder.btn_values.setText(String.valueOf(slmoi));

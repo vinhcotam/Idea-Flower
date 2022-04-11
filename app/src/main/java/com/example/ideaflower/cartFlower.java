@@ -1,18 +1,24 @@
 package com.example.ideaflower;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ideaflower.adapter.CartAdapter;
 
 public class cartFlower extends AppCompatActivity {
     ListView lv_cart;
+    String email;
     TextView tv_thongbao;
     static TextView tv_total;
     Button bt_thanhtoan,bt_tieptuc;
@@ -23,10 +29,79 @@ public class cartFlower extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_flower);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        email=bundle.getString("email");
         anhXa();
         ActionToolBar();
         CheckData();
         setData();
+        deleteCart();
+        setClickTieptuc();
+    }
+    private void setClickTieptuc() {
+        bt_tieptuc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(cartFlower.this,Homepage.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("email",email);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+        });
+    }
+    private void setClickThanhToan(){
+        bt_thanhtoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Homepage.mListCart.size()>0){
+                    Intent intent=new Intent();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Giỏ hàng trống, không thể thanh toán được",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    private void deleteCart() {
+        lv_cart.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(cartFlower.this);
+                builder.setTitle("Xác nhận xóa hoa ra khỏi giỏ hàng");
+                builder.setMessage("Xóa");
+                builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(Homepage.mListCart.size()<=0){
+                            tv_thongbao.setVisibility(View.VISIBLE);
+                        }else{
+                            Homepage.mListCart.remove(position);
+                            cartAdapter.notifyDataSetChanged();
+                            setData();
+                            if(Homepage.mListCart.size()<=0){
+                                tv_thongbao.setVisibility(View.VISIBLE);
+                            }else{
+                                tv_thongbao.setVisibility(View.INVISIBLE);
+                                cartAdapter.notifyDataSetChanged();
+                                setData();
+                            }
+                        }
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        cartAdapter.notifyDataSetChanged();
+                        setData();
+                    }
+                });
+                builder.show();
+                return true;
+            }
+        });
     }
 
     public static void setData() {

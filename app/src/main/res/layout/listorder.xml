@@ -49,8 +49,8 @@
             android:layout_height="wrap_content">
             <Button
                 android:focusable="false"
-                android:layout_width="50dp"
-                android:textSize="30sp"
+                android:layout_width="40dp"
+                android:textSize="20sp"
                 android:layout_marginTop="5dp"
                 android:id="@+id/btn_minus"
                 android:text="-"
@@ -60,7 +60,7 @@
                 android:background="@null"
                 android:focusable="false"
                 android:layout_width="70dp"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:layout_marginTop="5dp"
                 android:id="@+id/btn_values"
                 android:text="1"
@@ -68,8 +68,8 @@
             </Button>
             <Button
                 android:focusable="false"
-                android:layout_width="50dp"
-                android:textSize="30sp"
+                android:layout_width="40dp"
+                android:textSize="20sp"
                 android:layout_marginTop="5dp"
                 android:id="@+id/btn_plus"
                 android:text="+"

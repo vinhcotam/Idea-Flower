@@ -38,13 +38,13 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 
 public class FlowerDetail extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-
+    String email="";
     private int mSelectId;
     private  ArrayList<vote> mListVote;
     private ArrayList<Flower> mListFlower;
-    TextView tv_name,tv_price,tv_motasp,tv_quantity,tv_namesptt,tv_pricesptt,
-            tv_category,tv_color,tv_thongbao,tv_total;
-    Button bt_addtocart,bt_vote,bt_thanhtoan,bt_tieptuc;
+    TextView tv_name,tv_price,tv_quantity,tv_namesptt,tv_pricesptt,
+            tv_category,tv_color;
+    Button bt_addtocart,bt_vote;
     ImageView img_chitiet,img_sptt;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
@@ -66,6 +66,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
          flowerid = bundle.getString("flowerid");
+          email=bundle.getString("email");
         mListVote=new ArrayList<>();
         mListVote=displayDataVote();
         mListFlower=new ArrayList<>();
@@ -111,8 +112,10 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
                     Homepage.mListCart.add(new Cart(idflower,nameflower,giamoi,imgflower,sl));
 
                 }
-                Intent intent=new Intent(FlowerDetail.this,cartFlower.class);
-                startActivity(intent);
+//                Intent intent=new Intent(FlowerDetail.this,cartFlower.class);
+//                startActivity(intent);
+                Toast.makeText(getApplicationContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_LONG).show();
+
             }
         });
     }
@@ -259,7 +262,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
 //        db.execSQL(sql);
         db.execSQL(sql1);
     }
-    String idflower,nameflower,catagory,color,idvote,email,content;
+    String idflower,nameflower,catagory,color,content;
     int price,quantity,imgflower;
     float ratingvote;
     void loadDataChitietSP() {
@@ -300,23 +303,31 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         }else if(item.getItemId()==R.id.nav_cart){
             drawerLayout.closeDrawer(GravityCompat.START);
             intent=new Intent(FlowerDetail.this,Login.class);
+            Bundle bundle=new Bundle();
+            bundle.putString("email",email);
+            intent.putExtras(bundle);
             startActivity(intent);
             return true;
         }
-        return false;
+        return true;
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu,menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.nav_home:
                 Intent intent=new Intent(FlowerDetail.this, Homepage.class);
                 startActivity(intent);
+                return true;
             case R.id.menugiohang:
                  intent=new Intent(FlowerDetail.this, cartFlower.class);
+                 Bundle bundle=new Bundle();
+                 bundle.putString("email",email);
+                 intent.putExtras(bundle);
                 startActivity(intent);
+                return true;
 
         }
         return super.onOptionsItemSelected(item);
