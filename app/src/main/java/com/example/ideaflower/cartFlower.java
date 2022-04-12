@@ -58,7 +58,9 @@ public class cartFlower extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(Homepage.mListCart.size()>0){
-                    int total=Integer.parseInt(tv_total.getText().toString());
+//                     String total=(tv_total.getText().toString());
+//                     int tong= Integer.parseInt(total);
+                    total= Integer.parseInt(tv_total.getText().toString().substring(0,tv_total.getText().length()-4));
                     Intent intent=new Intent(cartFlower.this,Checkout.class);
                     Bundle bundle=new Bundle();
                     bundle.putString("email",email);
@@ -110,9 +112,9 @@ public class cartFlower extends AppCompatActivity {
             }
         });
     }
-
+     static int total;
     public static void setData() {
-        int total=0;
+         total = 0;
         for(int i=0;i<Homepage.mListCart.size();i++){
             total+= Homepage.mListCart.get(i).getPrice();
         }

@@ -89,6 +89,6 @@ public class Checkout extends AppCompatActivity {
         tv_totalpay=findViewById(R.id.tv_totalpay);
         tv_totalpay.setText(""+total);
         tv_getemail=findViewById(R.id.tv_getemail);
-        tv_getemail.setText(email);
+//        tv_getemail.setText(email);
     }
 }

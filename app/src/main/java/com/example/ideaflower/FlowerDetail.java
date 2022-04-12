@@ -183,7 +183,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         });
     }
     private void setDataFlower() {
-        flowerAdapter =new flowerAdapter(FlowerDetail.this,mListFlower);
+        flowerAdapter =new flowerAdapter(FlowerDetail.this,mListFlower,email1);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(FlowerDetail.this,RecyclerView.HORIZONTAL,false);
         rcv_flower.setLayoutManager(linearLayoutManager);
         rcv_flower.setAdapter(flowerAdapter);
@@ -360,7 +360,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
             drawerLayout.closeDrawer(GravityCompat.START);
             intent=new Intent(FlowerDetail.this,Homepage.class);
             Bundle bundle=new Bundle();
-            bundle.putString("email",email);
+            bundle.putString("email",email1);
             intent.putExtras(bundle);
             startActivity(intent);
             return true;
@@ -368,7 +368,15 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
             drawerLayout.closeDrawer(GravityCompat.START);
             intent=new Intent(FlowerDetail.this,cartFlower.class);
             Bundle bundle=new Bundle();
-            bundle.putString("email",email);
+            bundle.putString("email",email1);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            return true;
+        }else if(item.getItemId()==R.id.nav_order){
+            drawerLayout.closeDrawer(GravityCompat.START);
+            intent=new Intent(FlowerDetail.this,MyOrder.class);
+            Bundle bundle=new Bundle();
+            bundle.putString("email",email1);
             intent.putExtras(bundle);
             startActivity(intent);
             return true;

@@ -1,34 +1,55 @@
 package com.example.ideaflower.classs;
 
 public class Order {
-    String mFlowerName,idflower;
-    int imgFlower,quantity,price;
+    String idorder,email,location;
+    String nameflower,idflower;
+    int img,quantity,price,phone;
 
-    public Order(String mFlowerName, int imgFlower, String idflower, int quantity, int price) {
-        this.mFlowerName = mFlowerName;
-        this.imgFlower = imgFlower;
+    public Order(String idorder, String email, String location, String nameflower, String idflower, int img, int quantity, int price, int phone) {
+        this.idorder = idorder;
+        this.email = email;
+        this.location = location;
+        this.nameflower = nameflower;
         this.idflower = idflower;
+        this.img = img;
         this.quantity = quantity;
         this.price = price;
+        this.phone = phone;
     }
 
     public Order() {
     }
 
-    public String getmFlowerName() {
-        return mFlowerName;
+    public String getIdorder() {
+        return idorder;
     }
 
-    public void setmFlowerName(String mFlowerName) {
-        this.mFlowerName = mFlowerName;
+    public void setIdorder(String idorder) {
+        this.idorder = idorder;
     }
 
-    public int getImgFlower() {
-        return imgFlower;
+    public String getEmail() {
+        return email;
     }
 
-    public void setImgFlower(int imgFlower) {
-        this.imgFlower = imgFlower;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getNameflower() {
+        return nameflower;
+    }
+
+    public void setNameflower(String nameflower) {
+        this.nameflower = nameflower;
     }
 
     public String getIdflower() {
@@ -37,6 +58,14 @@ public class Order {
 
     public void setIdflower(String idflower) {
         this.idflower = idflower;
+    }
+
+    public int getImg() {
+        return img;
+    }
+
+    public void setImg(int img) {
+        this.img = img;
     }
 
     public int getQuantity() {
@@ -53,5 +82,13 @@ public class Order {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
 }

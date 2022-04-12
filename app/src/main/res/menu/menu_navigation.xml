@@ -14,42 +14,4 @@
             android:icon="@drawable/ic_order">
         </item>
     </group>
-    <item android:title="Danh mục hoa">
-        <menu >
-            <item android:id="@+id/nav_caycanh"
-                android:title="Cây cảnh"
-                android:icon="@drawable/ic_flower">
-
-            </item>
-            <item android:id="@+id/nav_chucmung"
-                android:title="Hoa chúc mừng"
-                android:icon="@drawable/ic_flower">
-
-            </item>
-            <item android:id="@+id/nav_tinhyeu"
-                android:title="Hoa tình yêu"
-                android:icon="@drawable/ic_flower">
-
-            </item>
-            <item android:id="@+id/nav_tangle"
-                android:title="Hoa tang lễ"
-                android:icon="@drawable/ic_flower">
-
-            </item>
-
-        </menu>
-    </item>
-    <item android:title="Tài khoản">
-        <menu >
-            <item android:id="@+id/nav_acc"
-                android:title="Quản lý tài khoản"
-                android:icon="@drawable/ic_acc">
-            </item>
-            <item android:id="@+id/nav_logout"
-                android:title="@string/logout"
-                android:icon="@drawable/ic_logout">
-            </item>
-
-        </menu>
-    </item>
 </menu>
