@@ -54,7 +54,7 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Login.this, Homepage.class);
                 Bundle bundle = new Bundle();
-                bundle.getString("email", email);
+                bundle.putString("email", email);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -66,7 +66,7 @@ public class Login extends AppCompatActivity {
                 getemail();
                 Intent intent = new Intent(Login.this, Signup.class);
                 Bundle bundle = new Bundle();
-                bundle.getString("email", email);
+                bundle.putString("email", email);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

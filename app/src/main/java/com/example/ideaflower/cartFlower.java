@@ -58,6 +58,7 @@ public class cartFlower extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(Homepage.mListCart.size()>0){
+                    int total=Integer.parseInt(tv_total.getText().toString());
                     Intent intent=new Intent(cartFlower.this,Checkout.class);
                     Bundle bundle=new Bundle();
                     bundle.putString("email",email);
@@ -109,11 +110,11 @@ public class cartFlower extends AppCompatActivity {
             }
         });
     }
-    static int total=0;
-    public static void setData() {
 
+    public static void setData() {
+        int total=0;
         for(int i=0;i<Homepage.mListCart.size();i++){
-            total+=Homepage.mListCart.get(i).getPrice();
+            total+= Homepage.mListCart.get(i).getPrice();
         }
         tv_total.setText(total+ " vnd");
     }
