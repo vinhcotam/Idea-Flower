@@ -56,30 +56,21 @@ public class MyOrder extends AppCompatActivity {
         if (cursor.moveToFirst()) {
             do {
                 Order order = new Order();
-//                int phone=cursor.getInt(0);
-//                String location=cursor.getString(1);
-//                String id=cursor.getString(2);
-//                String name=cursor.getString(3);
-//                int pricee=cursor.getInt(4);
-//                int quan=cursor.getInt(5);
-//                int img=cursor.getInt(6);
-//                order.setIdorder(id);
-//                order.setImg(img);
-//                order.setLocation(location);
-//                order.setNameflower(name);
-//                order.setPhone(phone);
-//                order.setEmail(email);
-//                order.setQuantity(quan);
-//                order.setPrice(pricee);
                 String id = cursor.getString(0);
                 String name = cursor.getString(1);
                 int price = cursor.getInt(2);
                 int quan = cursor.getInt(3);
                 int img = cursor.getInt(4);
+                String location=cursor.getString(8);
+                String namecus=cursor.getString(6);
+                int phone=cursor.getInt(7);
                 order.setNameflower(name);
                 order.setImg(img);
                 order.setQuantity(quan);
                 order.setPrice(price);
+                order.setNamecus(namecus);
+                order.setLocation(location);
+                order.setPhone(phone);
                 mListOrder.add(order);
             } while (cursor.moveToNext());
         }cursor.close();
@@ -88,7 +79,7 @@ public class MyOrder extends AppCompatActivity {
     }
 
     private void connectDB() {
-        db=openOrCreateDatabase("IdeaFlower.db", MODE_PRIVATE, null);
+        db=openOrCreateDatabase("FlowerStoreDB.db", MODE_PRIVATE, null);
     }
 
     private void anhXa() {

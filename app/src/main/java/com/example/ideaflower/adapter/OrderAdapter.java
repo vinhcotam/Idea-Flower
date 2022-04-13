@@ -44,11 +44,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         int quan=order.getQuantity();
         int price=order.getPrice();
         int sdt=order.getPhone();
+        String namecus=order.getNamecus();
 //        holder.tv_giasp.setText(price);
         holder.img_order.setImageResource(img);
         holder.tv_quantitysp.setText(""+quan);
         holder.tv_tensp.setText(name);
         holder.tv_giasp.setText(""+price);
+        holder.tv_dc.setText(dc);
+        holder.tv_sdt.setText(""+sdt);
+        holder.tv_namecus.setText(namecus);
 //        holder.tv_tensp.setText(name);
 
 
@@ -61,7 +65,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView img_order;
-        TextView tv_tensp,tv_quantitysp,tv_giasp,tv_dc,tv_sdt;
+        TextView tv_tensp,tv_quantitysp,tv_giasp,tv_dc,tv_sdt,tv_namecus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,6 +75,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             tv_quantitysp=itemView.findViewById(R.id.tv_quantitysp);
             tv_giasp= itemView.findViewById(R.id.tv_giasp);
             tv_sdt=itemView.findViewById(R.id.tv_sdt);
+            tv_namecus=itemView.findViewById(R.id.tv_namecus);
         }
     }
 }

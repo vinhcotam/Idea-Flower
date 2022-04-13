@@ -39,11 +39,9 @@ public class flowerAdapter extends RecyclerView.Adapter<flowerAdapter.ViewHolder
     public void onBindViewHolder(@NonNull flowerAdapter.ViewHolder holder, int position) {
         Flower Flower=mListFlower.get(position);
         String nameflower=Flower.getFlowername();
-        String idflower=Flower.getFlowerid();
         float price=mListFlower.get(position).getPrice();
         int imgflower=Flower.getImgid();
         holder.tv_namesptt.setText(nameflower);
-        holder.tv_idsptt.setText(idflower);
         holder.tv_pricesptt.setText(price+ " vnđ");
         holder.img_sptt.setImageResource(imgflower);
         holder.img_sptt.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +73,6 @@ public class flowerAdapter extends RecyclerView.Adapter<flowerAdapter.ViewHolder
             tv_namesptt=itemView.findViewById(R.id.tv_namesptt);
             img_sptt=itemView.findViewById(R.id.img_sptt);
             tv_pricesptt=itemView.findViewById(R.id.tv_pricesptt);
-            tv_idsptt=itemView.findViewById(R.id.tv_idsptt);
         }
     }
 }

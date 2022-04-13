@@ -60,6 +60,7 @@ public class Checkout extends AppCompatActivity {
                 String name=et_namepay.getText().toString().trim();
                 String phone= (et_phonepay.getText().toString().trim());
                 String location=et_locationpay.getText().toString().trim();
+
                 if(name.length()<=0||location.length()<=0||phone.length()<=0||phone.length()>11){
                     Toast.makeText(getApplicationContext(),"Vui lòng nhập lại thông tin",Toast.LENGTH_LONG).show();
                 }else{
@@ -70,12 +71,11 @@ public class Checkout extends AppCompatActivity {
                          imgflower=Homepage.mListCart.get(i).getImgflower();
                          quantity=Homepage.mListCart.get(i).getQuantity();
                     }
-
+                        int phone1= Integer.parseInt(phone);
                         Random random=new Random();
                        id=random.nextInt();
-                        String sql="Insert into Order1 values("+id+",'"+name+"',"+phone+",'"+location+"','"+email+"')";
-                        db.execSQL(sql);
-                        String sql1="Insert into DetailOrder values("+id+",'"+nameflower+"',"+price+","+quantity+","+imgflower+",'"+email+"')";
+                        String sql1="Insert into DetailOrder values("+id+",'"+nameflower+"',"+price+","+quantity+","+imgflower+",'"+email+"','"+name+"'," +
+                                ""+phone1+",'"+location+"')";
                         db.execSQL(sql1);
                         Toast.makeText(getApplicationContext(),"Đặt hàng thành công",Toast.LENGTH_LONG).show();
                 }
@@ -84,13 +84,8 @@ public class Checkout extends AppCompatActivity {
     }
 
     private void connectDB() {
-        db=openOrCreateDatabase("IdeaFlower.db", MODE_PRIVATE, null);
-        String sql="Create table if not exists Order1(idorder int primary key,namecus char(50)," +
-                "phone int(11),location char(50),Email char(50))";
-        db.execSQL(sql);
-        String sql1="Create table if not exists DetailOrder(iddetail int primary key, nameflower char(50), " +
-                "price int, quantity int, imgflower int,Email char(50))";
-        db.execSQL(sql1);
+        db=openOrCreateDatabase("FlowerStoreDB.db", MODE_PRIVATE, null);
+
     }
 
 

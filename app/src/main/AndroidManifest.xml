@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IdeaFlower">
         <activity
+            android:name=".DataBase"
+            android:exported="false" />
+        <activity
             android:name=".MyOrder"
             android:exported="false" />
         <activity

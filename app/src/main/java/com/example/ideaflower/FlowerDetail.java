@@ -67,7 +67,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         mListVote=new ArrayList<>();
         mListVote=displayDataVote();
 
-        insertData();
+//        insertData();
         loadDataChitietSP();
         mListFlower=new ArrayList<>();
         mListFlower=displayDataFlower();
@@ -78,59 +78,9 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
         setDataFlower();
         setClickAddtoCart();
         setClickCartImgButton();
-        setClickSearch();
     }
 
-    private void setClickSearch() {
-        EditText editText = findViewById(R.id.ET_SearchFlower);
-        editText.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN
-                        && i == KeyEvent.KEYCODE_ENTER) {
-                    page=0;
-                    String tukhoa = editText.getText().toString();
-                    String sql = "select * from Flower where nameflower like '%"+ tukhoa +"%'";
-                    return selectflower(sql);
-                }
-                return false;
-            }
-        });
-    }
 
-    void getDataFlower() {
-        String sql = "Create table if not exists Flower(idflower char(50) primary key, nameflower char(50), category char(50),price int,color char(50),imgflower int,quantity int)";
-        db.execSQL(sql);
-        sql = "select * from Flower";
-        selectflower(sql);
-    }
-
-    boolean selectflower(String sql){
-        page=0;
-        Cursor cursor = db.rawQuery(sql, null);
-        try {
-            mListFlower = new ArrayList<>();
-            while (!cursor.isLast()) {
-                cursor.moveToNext();
-                String id = cursor.getString(0);
-                String name = cursor.getString(1);
-                String category = cursor.getString(2);
-                int price = cursor.getInt(3);
-                String color = cursor.getString(4);
-                int imgid = cursor.getInt(5);
-                int quantity = cursor.getInt(6);
-                Flower fl = new Flower(id, name, category, price, color, imgid, quantity);
-                mListFlower.add(fl);
-            }
-            if(mListFlower.size()==0){
-                return false;
-            }
-            anhXa();
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
     String email;
     private void setClickCartImgButton() {
         imgBT_cart.setOnClickListener(new View.OnClickListener() {
@@ -294,7 +244,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     }
     SQLiteDatabase db = null;
     void ConnectDB(){
-        db=openOrCreateDatabase("IdeaFlower.db", MODE_PRIVATE, null);
+        db=openOrCreateDatabase("FlowerStoreDB.db", MODE_PRIVATE, null);
         //tạo table nếu chưa có
 //        String sql = "create table if not exists Flower(idflower char(50) primary key, nameflower char(50), category char(50),price int,color char(50),imgflower int,quantity int)";
         String sql1="create table if not exists Vote(email char(50),content char(100),numstar float,idflower char(50),foreign key (idflower)references Flower(idflower))";
@@ -307,23 +257,23 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
 //                String sql2 = "DROP table Vote ";
 //        db.execSQL(sql2);
     }
-    void insertData(){
-        String sql="Insert into Flower values('flower1_date','First Date','Hoa',300000,'yellow and white',"+R.drawable.hoa1_date+",100)"
-                + ",('flower2_date','Carla','Date',550000,'Hoa',"+R.drawable.hoa2_date+",100)"
-                +",('flower3_date','La Vie En Rose','Hoa',500000,'pink and violet',"+R.drawable.hoa3_date+",100)"
-                +",('flower4_date','Violet Lover','Hoa',700000,'pink and violet',"+R.drawable.hoa4_date+",100)";
-//        String sql="Insert into Flower values('flower5_date','Firt Date','Date',300000,'yellow and white','hoa4_date')";
-//        String sql1="Insert into Vote values('test','test',1,'flower2_date')"
-//                +",('test1','test1',2,'flower2_date')"
-//                +",('test2','test2',3,'flower2_date')";
-//        db.execSQL(sql);
-//        db.execSQL(sql1);
-                String sql1="Insert into Vote values('test','test',1,'lver')"
-                +",('test1','test1',2,'lver')"
-                +",('test2','test2',3,'lver')";
-//        db.execSQL(sql);
-//        db.execSQL(sql1);
-    }
+//    void insertData(){
+//        String sql="Insert into Flower values('flower1_date','First Date','Hoa',300000,'yellow and white',"+R.drawable.hoa1_date+",100)"
+//                + ",('flower2_date','Carla','Date',550000,'Hoa',"+R.drawable.hoa2_date+",100)"
+//                +",('flower3_date','La Vie En Rose','Hoa',500000,'pink and violet',"+R.drawable.hoa3_date+",100)"
+//                +",('flower4_date','Violet Lover','Hoa',700000,'pink and violet',"+R.drawable.hoa4_date+",100)";
+////        String sql="Insert into Flower values('flower5_date','Firt Date','Date',300000,'yellow and white','hoa4_date')";
+////        String sql1="Insert into Vote values('test','test',1,'flower2_date')"
+////                +",('test1','test1',2,'flower2_date')"
+////                +",('test2','test2',3,'flower2_date')";
+////        db.execSQL(sql);
+////        db.execSQL(sql1);
+//                String sql1="Insert into Vote values('test','test',1,'lver')"
+//                +",('test1','test1',2,'lver')"
+//                +",('test2','test2',3,'lver')";
+////        db.execSQL(sql);
+////        db.execSQL(sql1);
+//    }
     String idflower,nameflower,catagory,color,content;
     int price,quantity,imgflower;
     float ratingvote;

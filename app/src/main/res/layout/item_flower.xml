@@ -14,13 +14,6 @@
         android:src="@drawable/logo"></ImageView>
 
     <TextView
-        android:id="@+id/tv_idsptt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="ID"></TextView>
-
-    <TextView
         android:id="@+id/tv_namesptt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

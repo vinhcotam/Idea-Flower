@@ -93,7 +93,7 @@ public class Login extends AppCompatActivity {
         });
     }
     void ConnectDB(){
-        db=openOrCreateDatabase("IdeaFlower.db", MODE_PRIVATE, null);
+        db=openOrCreateDatabase("FlowerStoreDB.db", MODE_PRIVATE, null);
         //tạo table nếu chưa có
         String sql = "create table if not exists Account(Email char(50) primary key, Password char(50), Name char(50))";
         db.execSQL(sql);
