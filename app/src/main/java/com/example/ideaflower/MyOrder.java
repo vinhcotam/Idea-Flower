@@ -41,7 +41,7 @@ public class MyOrder extends AppCompatActivity {
     }
     private void setDataOrder() {
         orderAdapter =new OrderAdapter(MyOrder.this,email,mListOrder);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(MyOrder.this,RecyclerView.VERTICAL,false);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(MyOrder.this,RecyclerView.HORIZONTAL,false);
         rcv_order.setLayoutManager(linearLayoutManager);
         rcv_order.setAdapter(orderAdapter);
     }

@@ -87,12 +87,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/tv_getemail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </TextView>
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tổng tiền: "
@@ -106,7 +100,6 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-
         <Button
             android:id="@+id/bt_pay"
             android:layout_width="wrap_content"
@@ -115,5 +108,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:id="@+id/btn_tiep"
+            android:text="Tiếp tục mua sắn"
+            android:layout_height="wrap_content">
+
+        </Button>
     </LinearLayout>
 </LinearLayout>

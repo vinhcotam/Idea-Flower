@@ -19,7 +19,7 @@ import java.util.Random;
 public class Checkout extends AppCompatActivity {
     EditText et_namepay,et_phonepay,et_locationpay;
     SQLiteDatabase db;
-    Button bt_pay;
+    Button bt_pay,btn_tiep;
     String email;
     int total;
     int id,price,imgflower,quantity;
@@ -35,9 +35,22 @@ public class Checkout extends AppCompatActivity {
         email=bundle.getString("email");
         total=bundle.getInt("total");
         anhXa();
-
         connectDB();
         setClickPay();
+        setClickTieptuc();
+    }
+
+    private void setClickTieptuc() {
+        btn_tiep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Checkout.this,Homepage.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("email",email);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setClickPay() {
@@ -88,7 +101,6 @@ public class Checkout extends AppCompatActivity {
         bt_pay=findViewById(R.id.bt_pay);
         tv_totalpay=findViewById(R.id.tv_totalpay);
         tv_totalpay.setText(""+total);
-        tv_getemail=findViewById(R.id.tv_getemail);
-//        tv_getemail.setText(email);
+        btn_tiep=findViewById(R.id.btn_tiep);
     }
 }
