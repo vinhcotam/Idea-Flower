@@ -131,7 +131,7 @@
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
                         android:text="Thêm vào giỏ hàng"
-                        android:textColor="#b6a035"
+                        android:backgroundTint="#EF5350"
                         android:textSize="15sp"></Button>
                 </LinearLayout>
 

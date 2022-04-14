@@ -27,6 +27,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,9 +49,6 @@ public class Homepage extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         email = bundle.getString("email");
-//        Drawable drawable = (Drawable) getDrawable(R.drawable.banner1);
-//        ImageView img = (ImageView) findViewById(R.id.imageView);
-//        img.setImageDrawable(getDrawable(R.drawable.banner1));
         if(mListCart!=null){
 
         }else{
@@ -63,7 +62,6 @@ public class Homepage extends AppCompatActivity {
         //setContentView(R.layout.activity_homepage);
         db = openOrCreateDatabase("FlowerStoreDB.db", MODE_PRIVATE, null);
         getDataFlower();
-        LoadContent();
         setEvent();
 
     }
@@ -100,6 +98,7 @@ public class Homepage extends AppCompatActivity {
             }
             LoadContent();
         } catch (Exception e) {
+            NoContent();
             return false;
         }
         return true;
@@ -120,7 +119,8 @@ public class Homepage extends AppCompatActivity {
                 return false;
             }
         });
-        imgBT_cart.setOnClickListener(new View.OnClickListener() {
+        imgBT_cartHome = findViewById(R.id.imgBT_cartHome);
+        imgBT_cartHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(Homepage.this, cartFlower.class);
@@ -135,7 +135,15 @@ public class Homepage extends AppCompatActivity {
         imgc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String sql = " Select * from Flower where category ='Cây'";
+                String sql = " Select * from Flower where category like '%Cây%'";
+                selectflower(sql);
+            }
+        });
+        imgc = findViewById(R.id.imgBT_cAll);
+        imgc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String sql = " Select * from Flower";
                 selectflower(sql);
             }
         });
@@ -143,7 +151,7 @@ public class Homepage extends AppCompatActivity {
         imgc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String sql = " Select * from Flower where category ='Hoa'";
+                String sql = " Select * from Flower where category like '%Hoa%'";
                 selectflower(sql);
             }
         });
@@ -151,7 +159,7 @@ public class Homepage extends AppCompatActivity {
         imgc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String sql = " Select * from Flower where category ='Chậu'";
+                String sql = " Select * from Flower where category like '%Chậu%'";
                 selectflower(sql);
             }
         });
@@ -172,6 +180,7 @@ public class Homepage extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //hiển thị tối đa 10 mặt hàng trên 1 trang. Trang đầu là 0(hiển thị trên ứng dụng là 1)
                 if(page<flowers.size()/10){
                     page++;
                     LoadContent();
@@ -203,9 +212,21 @@ public class Homepage extends AppCompatActivity {
     Button btnaddcart;
     RatingBar rbar;
     LinearLayout lay;
-    ImageButton imgBT_cart;
-
+    ImageButton imgBT_cartHome;
+    LinearLayout NoContent;
+    TableLayout HaveContent;
+    void NoContent(){
+        NoContent = findViewById(R.id.NoContent);
+        NoContent.setVisibility(View.VISIBLE);
+        HaveContent = findViewById(R.id.HaveContent);
+        HaveContent.setVisibility(View.GONE);
+    }
     void LoadContent() {
+
+        NoContent = findViewById(R.id.NoContent);
+        NoContent.setVisibility(View.GONE);
+        HaveContent = findViewById(R.id.HaveContent);
+        HaveContent.setVisibility(View.VISIBLE);
 
         EditText et = findViewById(R.id.inputpage);
         et.setText(""+(page+1));
@@ -279,7 +300,6 @@ public class Homepage extends AppCompatActivity {
         rbar = findViewById(R.id.rating10);
         lay = findViewById(R.id.lay10);
         Design(10);
-        imgBT_cart=findViewById(R.id.imgBT_cart);
     }
     void Design(int position){
         int index = page*10+position-1;
@@ -299,43 +319,43 @@ public class Homepage extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.BT_add1:{
-                        flowerid = flowers.get(0).getFlowerid();
+                        flowerid = flowers.get(page*10+0).getFlowerid();
                         break;
                     }
                     case R.id.BT_add2:{
-                        flowerid = flowers.get(1).getFlowerid();
+                        flowerid = flowers.get(page*10+1).getFlowerid();
                         break;
                     }
                     case R.id.BT_add3:{
-                        flowerid = flowers.get(2).getFlowerid();
+                        flowerid = flowers.get(page*10+2).getFlowerid();
                         break;
                     }
                     case R.id.BT_add4:{
-                        flowerid = flowers.get(3).getFlowerid();
+                        flowerid = flowers.get(page*10+3).getFlowerid();
                         break;
                     }
                     case R.id.BT_add5:{
-                        flowerid = flowers.get(4).getFlowerid();
+                        flowerid = flowers.get(page*10+4).getFlowerid();
                         break;
                     }
                     case R.id.BT_add6:{
-                        flowerid = flowers.get(5).getFlowerid();
+                        flowerid = flowers.get(page*10+5).getFlowerid();
                         break;
                     }
                     case R.id.BT_add7:{
-                        flowerid = flowers.get(6).getFlowerid();
+                        flowerid = flowers.get(page*10+6).getFlowerid();
                         break;
                     }
                     case R.id.BT_add8:{
-                        flowerid = flowers.get(7).getFlowerid();
+                        flowerid = flowers.get(page*10+7).getFlowerid();
                         break;
                     }
                     case R.id.BT_add9:{
-                        flowerid = flowers.get(8).getFlowerid();
+                        flowerid = flowers.get(page*10+8).getFlowerid();
                         break;
                     }
                     case R.id.BT_add10:{
-                        flowerid = flowers.get(9).getFlowerid();
+                        flowerid = flowers.get(page*10+9).getFlowerid();
                         break;
                     }
                 }
@@ -353,43 +373,43 @@ public class Homepage extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.imgFlower1:{
-                        flowerid = flowers.get(0).getFlowerid();
+                        flowerid = flowers.get(page*10+0).getFlowerid();
                         break;
                     }
                     case R.id.imgFlower2:{
-                        flowerid = flowers.get(1).getFlowerid();
+                        flowerid = flowers.get(page*10+1).getFlowerid();
                         break;
                     }
                     case R.id.imgFlower3:{
-                        flowerid = flowers.get(2).getFlowerid();
+                        flowerid = flowers.get(page*10+2).getFlowerid();
                         break;
                     }
                     case R.id.imgFlower4:{
-                        flowerid = flowers.get(3).getFlowerid();
+                        flowerid = flowers.get(page*10+3).getFlowerid();
                         break;
                     }
                     case R.id.imgFlower5:{
-                        flowerid = flowers.get(4).getFlowerid();
+                        flowerid = flowers.get(page*10+4).getFlowerid();
                         break;
                     }
                     case R.id.imgFlower6:{
-                        flowerid = flowers.get(5).getFlowerid();
+                        flowerid = flowers.get(page*10+5).getFlowerid();
                         break;
                     }
                     case R.id.imgFlower7:{
-                        flowerid = flowers.get(6).getFlowerid();
+                        flowerid = flowers.get(page*10+6).getFlowerid();
                         break;
                     }
                     case R.id.imgFlower8:{
-                        flowerid = flowers.get(7).getFlowerid();
+                        flowerid = flowers.get(page*10+7).getFlowerid();
                         break;
                     }
                     case R.id.imgFlower9:{
-                        flowerid = flowers.get(8).getFlowerid();
+                        flowerid = flowers.get(page*10+8).getFlowerid();
                         break;
                     }
                     case R.id.imgFlower10:{
-                        flowerid = flowers.get(9).getFlowerid();
+                        flowerid = flowers.get(page*10+9).getFlowerid();
                         break;
                     }
                 }

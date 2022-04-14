@@ -30,6 +30,8 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_email_24"
                 android:drawablePadding="10dp"
+                android:drawableTint="#EF5350"
+                android:textColorHint="#EF5350"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:id="@+id/ET_email"
@@ -47,6 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_lock_24"
+                android:drawableTint="#EF5350"
+                android:textColorHint="#EF5350"
                 android:drawablePadding="10dp"
                 android:hint="@string/password"
                 android:inputType="textPassword"
@@ -63,7 +67,7 @@
         <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            style="@style/Widget.AppCompat.Button.Colored"
+            android:backgroundTint="#EF5350"
             android:id="@+id/BT_login"
             android:textSize="16sp"
             android:text="@string/login">
@@ -71,17 +75,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.Button.Colored"
+            android:backgroundTint="#EF5350"
             android:text="@string/signup"
             android:layout_marginStart="5dp"
             android:textSize="16sp"
             android:id="@+id/BT_signup"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/testtinhnang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Test tính năng" />
 
 </LinearLayout>

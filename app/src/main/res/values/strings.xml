@@ -50,5 +50,8 @@
     <string name="cay">Cây</string>
     <string name="hoa">Hoa</string>
     <string name="chaucay">Chậu cây</string>
+    <string name="product">Sản phẩm</string>
+    <string name="khongcosanpham">Không có sản phẩm nào</string>
+    <string name="all">Tất cả sản phẩm</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

@@ -38,20 +38,20 @@
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/ic_baseline_search_24"
                         android:drawablePadding="10dp"
-                        android:drawableTint="#4CAF50"
+                        android:drawableTint="#EF5350"
                         android:ems="10"
                         android:hint="@string/find"
                         android:inputType="textPersonName"
                         android:padding="10dp"
-                        android:textColor="#4CAF50"
-                        android:textColorHint="#4CAF50"
+                        android:textColor="#EF5350"
+                        android:textColorHint="#EF5350"
                         android:textSize="18sp" />
 
                     <ImageButton
-                        android:id="@+id/imgBT_cart"
+                        android:id="@+id/imgBT_cartHome"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:backgroundTint="@color/cardview_shadow_end_color"
+                        android:backgroundTint="#ECD7D7"
                         app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
                 </TableRow>
 
@@ -77,13 +77,22 @@
                 android:layout_height="wrap_content"
                 android:stretchColumns="1">
 
-                <TableRow android:weightSum="0.99">
+                <TableRow android:weightSum="1">
 
+                    <ImageButton
+                        android:id="@+id/imgBT_cAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="false"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/all" />
                     <ImageButton
                         android:id="@+id/imgBT_cCay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.33"
+                        android:layout_weight="0.25"
                         android:adjustViewBounds="true"
                         android:cropToPadding="false"
                         android:scaleType="fitXY"
@@ -92,7 +101,7 @@
                         android:id="@+id/imgBT_cHoa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.33"
+                        android:layout_weight="0.25"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/hoa" />
@@ -100,49 +109,75 @@
                         android:id="@+id/imgBT_cChau"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.33"
+                        android:layout_weight="0.25"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/chaucay" />
                 </TableRow>
 
-                <TableRow android:weightSum="0.99">
+                <TableRow android:weightSum="1">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.33"
+                        android:layout_weight="0.25"
+                        android:gravity="center"
+                        android:text="@string/all" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
                         android:gravity="center"
                         android:text="@string/cay" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.33"
+                        android:layout_weight="0.25"
                         android:gravity="center"
                         android:text="@string/hoa" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.33"
+                        android:layout_weight="0.25"
                         android:gravity="center"
                         android:text="@string/chaucay" />
                 </TableRow>
             </TableLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/product"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp"
+                android:gravity="center_horizontal"
+                android:id="@+id/NoContent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sorry"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/khongcosanpham"
+                    android:textSize="24sp"
+                    android:translationY="-40dp"
+                    />
+
+            </LinearLayout>
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="1">
+                android:stretchColumns="1"
+                android:id="@+id/HaveContent">
                 <TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/flower"
-                        android:textSize="32sp"
-                        android:textStyle="bold" />
                 </TableRow>
                 <TableRow
                     android:layout_width="match_parent"

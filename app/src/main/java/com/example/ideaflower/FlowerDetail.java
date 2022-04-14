@@ -140,7 +140,7 @@ public class FlowerDetail extends AppCompatActivity implements NavigationView.On
     }
     private ArrayList<Flower> displayDataFlower() {
         String category=  tv_category.getText().toString();
-        String sql="Select * from Flower where category='"+category+"'";
+        String sql="Select * from Flower where category like '%"+category+"%' except select * from Flower where idflower='"+flowerid+"'";
         Cursor cursor = db.rawQuery(sql, null);
         ArrayList<Flower>mListFlower=new ArrayList<>();
         if(cursor.moveToFirst()){

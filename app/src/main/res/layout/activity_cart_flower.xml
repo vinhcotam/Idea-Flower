@@ -12,7 +12,7 @@
       android:layout_width="match_parent"
       android:id="@+id/tb_cart"
       app:title="@string/cart"
-      android:background="#03A9F4"
+      android:background="#EF5350"
       android:layout_height="wrap_content">
   </androidx.appcompat.widget.Toolbar>
   <LinearLayout
@@ -69,13 +69,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bt_thanhtoan"
-        android:backgroundTint="#03A9F4"
+        android:backgroundTint="#EF5350"
         android:text="Thanh toán">
     </Button>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#03A9F4"
+        android:backgroundTint="#EF5350"
         android:id="@+id/bt_tieptuc"
         android:text="Tiếp tục mua sắm">
     </Button>
