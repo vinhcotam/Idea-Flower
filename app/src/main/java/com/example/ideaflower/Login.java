@@ -82,15 +82,6 @@ public class Login extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-        //test tính năng
-        button = findViewById(R.id.testtinhnang);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Login.this, FlowerDetail.class);
-                startActivity(intent);
-            }
-        });
     }
     void ConnectDB(){
         db=openOrCreateDatabase("FlowerStoreDB.db", MODE_PRIVATE, null);

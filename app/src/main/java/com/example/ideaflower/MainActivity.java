@@ -37,11 +37,12 @@ public class MainActivity extends AppCompatActivity  {
         finish();
     }
     void FisrtTime(){
-        SQLiteDatabase db = openOrCreateDatabase("FlowerStore.db", MODE_PRIVATE, null);
+        SQLiteDatabase db = openOrCreateDatabase("FlowerStoreDB.db", MODE_PRIVATE, null);
         try{
-//            db.execSQL("drop table if exists Flower");
+            db.execSQL("drop table if exists Flower");
+            db.execSQL("drop table if exists FirstUse");
             db.execSQL("create table if not exists FirstUse(first int unique)");
-            db.execSQL("insert into FistUse values(1)");
+            db.execSQL("insert into FirstUse values(1)");
             //đã có = lỗi -> không insert nữa
             String sql = "Create table if not exists Flower(idflower char(50) primary key, nameflower char(50), category char(50),price int,color char(50),imgflower int,quantity int)";
             db.execSQL(sql);
@@ -76,6 +77,13 @@ public class MainActivity extends AppCompatActivity  {
                     "('p5', 'Sen đá voi', 'Hoa, Chậu', 95000, 'Xanh', "+R.drawable.chau2+", 40)," +
                     "('fl20', 'Lavierose', 'Hoa', 95000, 'Hồng', "+R.drawable.lavierose+", 40)";
             db.execSQL(sql);
+            String sql1="create table if not exists Vote(email char(50),content char(100),numstar float,idflower char(50),foreign key (idflower)references Flower(idflower))";
+            db.execSQL(sql1);
+            String sql2 = "create table if not exists Flower(idflower char(50) primary key, nameflower char(50), category char(50),price int,color char(50),imgflower int,quantity int)";
+            db.execSQL(sql2);
+            String sql3="Create table if not exists DetailOrder(idorder int primary key, nameflower char(50), " +
+                    "price int, quantity int, imgflower int,Email char(50),namecus char(50),phone int(11),location char(50))";
+            db.execSQL(sql3);
         }
         catch (Exception e){
             return;
