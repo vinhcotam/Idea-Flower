@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity  {
             db.execSQL(sql1);
             String sql2 = "create table if not exists Flower(idflower char(50) primary key, nameflower char(50), category char(50),price int,color char(50),imgflower int,quantity int)";
             db.execSQL(sql2);
-            String sql3="Create table if not exists DetailOrder(idorder int primary key, nameflower char(50), " +
+            String sql3="Create table if not exists DetailOrder(idorder int, nameflower char(50), " +
                     "price int, quantity int, imgflower int,Email char(50),namecus char(50),phone int(11),location char(50))";
             db.execSQL(sql3);
         }

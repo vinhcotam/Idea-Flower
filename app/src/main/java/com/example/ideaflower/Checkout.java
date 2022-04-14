@@ -72,11 +72,10 @@ public class Checkout extends AppCompatActivity {
                          price= (int) Homepage.mListCart.get(i).getPrice();
                          imgflower=Homepage.mListCart.get(i).getImgflower();
                          quantity=Homepage.mListCart.get(i).getQuantity();
-
+                        String sql1="Insert into DetailOrder values("+id+",'"+nameflower+"',"+price+","+quantity+","+imgflower+",'"+email+"','"+name+"'," +
+                                ""+phone1+",'"+location+"')";
+                        db.execSQL(sql1);
                     }
-                    String sql1="Insert into DetailOrder values("+id+",'"+nameflower+"',"+price+","+quantity+","+imgflower+",'"+email+"','"+name+"'," +
-                            ""+phone1+",'"+location+"')";
-                    db.execSQL(sql1);
 
                         Toast.makeText(getApplicationContext(),"Đặt hàng thành công",Toast.LENGTH_LONG).show();
                 }
