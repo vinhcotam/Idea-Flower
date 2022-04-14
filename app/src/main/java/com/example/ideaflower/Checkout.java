@@ -60,7 +60,9 @@ public class Checkout extends AppCompatActivity {
                 String name=et_namepay.getText().toString().trim();
                 String phone= (et_phonepay.getText().toString().trim());
                 String location=et_locationpay.getText().toString().trim();
-
+                int phone1= Integer.parseInt(phone);
+                Random random=new Random();
+                id=random.nextInt();
                 if(name.length()<=0||location.length()<=0||phone.length()<=0||phone.length()>11){
                     Toast.makeText(getApplicationContext(),"Vui lòng nhập lại thông tin",Toast.LENGTH_LONG).show();
                 }else{
@@ -70,13 +72,12 @@ public class Checkout extends AppCompatActivity {
                          price= (int) Homepage.mListCart.get(i).getPrice();
                          imgflower=Homepage.mListCart.get(i).getImgflower();
                          quantity=Homepage.mListCart.get(i).getQuantity();
+
                     }
-                        int phone1= Integer.parseInt(phone);
-                        Random random=new Random();
-                       id=random.nextInt();
-                        String sql1="Insert into DetailOrder values("+id+",'"+nameflower+"',"+price+","+quantity+","+imgflower+",'"+email+"','"+name+"'," +
-                                ""+phone1+",'"+location+"')";
-                        db.execSQL(sql1);
+                    String sql1="Insert into DetailOrder values("+id+",'"+nameflower+"',"+price+","+quantity+","+imgflower+",'"+email+"','"+name+"'," +
+                            ""+phone1+",'"+location+"')";
+                    db.execSQL(sql1);
+
                         Toast.makeText(getApplicationContext(),"Đặt hàng thành công",Toast.LENGTH_LONG).show();
                 }
             }
